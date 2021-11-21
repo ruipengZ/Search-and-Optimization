@@ -1,19 +1,26 @@
 ### Value Iteration on Tree(n children) MDP
 import random
 import numpy as np
+import argparse
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.animation import PillowWriter
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--n_children", type=int, default= 2, help="number of children of every node")
+parser.add_argument("--n_depth", type=int, default= 4, help="depth of tree")
+parser.add_argument("--gamma", type=float, default= 0.1, help="decay rate of reward")
+parser.add_argument("--epsilon", type=float, default= 0.01, help="threshold of convergence")
+args = parser.parse_args()
+n_children = args.n_children
+n_depth = args.n_depth
+gamma = args.gamma
+epsilon = args.epsilon
+
 CHANCE = 0
-MAX = 1
+STATE = 1
 
-n_children = 2
-n_depth = 4
-
-gamma = 0.1
-epsilon = 0.01
 
 ims = []
 frames = []
@@ -23,7 +30,7 @@ random.seed(1)
 
 class Node():
     def __init__(self, type, depth, reward, prob, x, y):
-        self.type = type  # MAX or CHANCE
+        self.type = type  # STATE or CHANCE
         self.depth = depth
         self.children = []
         self.reward = reward
@@ -31,7 +38,7 @@ class Node():
         self.x = x
         self.y = y
 
-        if self.type == MAX:
+        if self.type == STATE:
             self.value = 0
             self.value_text = None
             self.best_action = None
@@ -42,7 +49,7 @@ class Node():
 class ValueIter():
     def __init__(self, tree_depth):
         self.tree_depth = tree_depth
-        self.root = Node(MAX, 0, random.randint(1,10), None, 0, 0)
+        self.root = Node(STATE, 0, random.randint(1, 10), None, 0, 0)
         self.delta = 0
 
         self.build_tree(self.root)
@@ -58,7 +65,7 @@ class ValueIter():
         if node.depth == self.tree_depth:
             return
 
-        if node.type == MAX:
+        if node.type == STATE:
             for i in range(n_children):
                 node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
 
@@ -68,14 +75,14 @@ class ValueIter():
             s = sum(prob_list)
             prob_list = [i / s for i in prob_list]
             for i in range(n_children):
-                node.children.append(Node(MAX, node.depth + 1, random.randint(1,9), prob_list[i], node.x + pos_list[i], node.y-10))
+                node.children.append(Node(STATE, node.depth + 1, random.randint(1, 9), prob_list[i], node.x + pos_list[i], node.y - 10))
 
         for child in node.children:
             self.build_tree(child)
 
 
     def draw_tree(self, node):
-        if node.type == MAX:
+        if node.type == STATE:
             ## plot node
             color = 'g'
             plt.scatter(node.x, node.y, c=color, marker='o', s=400)
@@ -101,7 +108,7 @@ class ValueIter():
 
 
     def Bellman_update(self, node, gamma):
-        if node.type == MAX: ## Bellman update on state
+        if node.type == STATE: ## Bellman update on state
             prev_value = node.value
             mx = 0
             best_action = None
@@ -119,13 +126,13 @@ class ValueIter():
             plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
             frames.append(plt1)
 
-            if node.value_text == None:
-                node.value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
+            if node.plt_v_l_text == None:
+                node.plt_v_l_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
             else:
-                frames.remove(node.value_text)
-                node.value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
+                frames.remove(node.plt_v_l_text)
+                node.plt_v_l_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
 
-            frames.append(node.value_text)
+            frames.append(node.plt_v_l_text)
             ims.append(frames.copy())
 
             plt3 = plt.scatter(node.x, node.y, c='g', marker='o', s=400)
@@ -134,16 +141,16 @@ class ValueIter():
 
             ## plot best action
             if node.depth != self.tree_depth:
-                if node.best_action_arrow == None:
-                    node.best_action_arrow = plt.arrow(node.x, node.y-1, best_action.x-node.x, best_action.y+2-node.y, ec='r', width=0.1)
+                if node.plt_policy_arrow == None:
+                    node.plt_policy_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x, best_action.y + 2 - node.y, ec='r', width=0.1)
 
                 else:
-                    if best_action != node.best_action:
-                        frames.remove(node.best_action_arrow)
-                        node.best_action_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x,
-                                                           best_action.y + 2 - node.y, ec='r', width=0.1)
+                    if best_action != node.policy:
+                        frames.remove(node.plt_policy_arrow)
+                        node.plt_policy_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x,
+                                                          best_action.y + 2 - node.y, ec='r', width=0.1)
 
-                frames.append(node.best_action_arrow)
+                frames.append(node.plt_policy_arrow)
                 ims.append(frames.copy())
 
         ## recursion

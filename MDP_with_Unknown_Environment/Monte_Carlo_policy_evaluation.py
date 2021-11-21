@@ -1,46 +1,66 @@
 ### Monte-Carlo Policy Evaluation on Tree(n children) MDP
 import random
 import numpy as np
+import argparse
 
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.animation import PillowWriter
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--n_children", type=int, default= 2, help="number of children of every node")
+parser.add_argument("--n_depth", type=int, default= 4, help="depth of tree")
+parser.add_argument("--gamma", type=float, default= 0.1, help="decay rate of reward")
+parser.add_argument("--budget", type=int, default= 6, help="max iterations of Monte-Carlo process")
+args = parser.parse_args()
+n_children = args.n_children
+n_depth = args.n_depth
+gamma = args.gamma
+budget = args.budget
+
 CHANCE = 0
-MAX = 1
-
-n_children = 2
-n_depth = 4
-
-gamma = 0.1
+STATE = 1
 
 ims = []
-frames = []
+frame = []
 fig = plt.figure(figsize=(16, 7))
 
-random.seed(1)
+random.seed(3)
 
 class Node():
     def __init__(self, type, depth, reward, prob, x, y):
         self.type = type  # MAX or CHANCE
         self.depth = depth
         self.children = []
-        self.reward = reward
-        self.prob = prob
+
+        ## for visualization
         self.x = x
         self.y = y
+        self.plt_node = None
+        self.plt_seq_arrow = None
 
-        if self.type == MAX:
-            self.value = 0
-            self.value_text = None
-            self.best_action = None
-            self.best_action_arrow = None
+        if self.type == STATE:
+            self.reward = reward
+            self.prob = prob
+
+            self.i_value = 0
+            self.value_list = []
+            self.value_average = 0
+            self.policy = None
+            ## for visualization
+            self.plt_v_l_text = None
+            self.plt_v_a_text = None
+            self.plt_policy_arrow = None
+
+        if self.type == CHANCE:
+            self.next_state = None
 
 
-class PolicyIter():
+class MCPE():
     def __init__(self, tree_depth):
         self.tree_depth = tree_depth
-        self.root = Node(MAX, 0, random.randint(1,10), None, 0, 0)
+        self.root = Node(STATE, 0, random.randint(1, 10), None, 0, 0)
 
         self.build_tree(self.root)
         self.draw_tree(self.root)
@@ -54,42 +74,43 @@ class PolicyIter():
         if node.depth == self.tree_depth:
             return
 
-        if node.type == MAX:
-            for i in range(n_children):
-                node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
-            ## Default use the first action as initial policy
-            node.best_action = node.children[0]
+        if node.type == STATE:
+            if node.depth == 0:  ## root node always take the exact action
+                node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
+                node.policy = node.children[0]
+            else:
+                for i in range(n_children):
+                    node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
+                ## Default use a random fixed policy
+                node.policy = node.children[random.randint(0,n_children-1)]
 
         else:
-            ### Generate transition probabilities
+            ## Generate transition probabilities, unknown for the state
             prob_list = [random.random() for _ in range(3)]
             s = sum(prob_list)
             prob_list = [i / s for i in prob_list]
             for i in range(n_children):
-                node.children.append(Node(MAX, node.depth + 1, random.randint(1,9), prob_list[i], node.x + pos_list[i], node.y-10))
+                node.children.append(Node(STATE, node.depth + 1, random.randint(1, 9), prob_list[i], node.x + pos_list[i], node.y - 10))
 
         for child in node.children:
             self.build_tree(child)
 
 
     def draw_tree(self, node):
-        if node.type == MAX:
+        if node.type == STATE:
             ## plot node
             color = 'g'
             plt.scatter(node.x, node.y, c=color, marker='o', s=400)
             ## plot reward
-            plt.text(node.x + 5, node.y, "%d" % node.reward, fontsize=10)
+            plt.text(node.x + 2, node.y, "%d" % node.reward, fontsize=12)
             for child in node.children:
                 ## plot arrow
                 plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y)
                 self.draw_tree(child)
-            ## plot initial policy
+            ## plot the fixed policy
             if node.depth != self.tree_depth:
-                node.best_action_arrow = plt.arrow(node.x, node.y - 1, node.best_action.x - node.x,
-                                                   node.best_action.y + 2 - node.y, ec='r', width=0.1)
-                frames.append(node.best_action_arrow)
-                ims.append(frames.copy())
-
+                plt.arrow(node.x, node.y - 1, node.policy.x - node.x,
+                          node.policy.y + 2 - node.y, ec='r', width=0.1)
 
         elif node.type == CHANCE:
             ## plot node
@@ -98,118 +119,88 @@ class PolicyIter():
             for child in node.children:
                 ## plot arrow and policy arrow
                 plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y)
-                ## plot transition prob
-                plt.text((node.x + child.x) / 2 -4, (node.y + child.y) / 2, "%.2f" % child.prob, fontsize=10)
+                ## plot transition prob as ?
+                plt.text((node.x + child.x) / 2 , (node.y + child.y) / 2, "?", fontsize=12)
                 self.draw_tree(child)
 
         return
 
 
-    def Bellman_update_with_policy(self, node, gamma):
-        if node.type == MAX: ## Bellman update on state
-            # prev_value = node.value
-            # mx = 0
-            # best_action = None
-            # for action in node.children:
-            #     if sum([child.prob*child.value for child in action.children]) >= mx:
-            #         mx = sum([child.prob*child.value for child in action.children])
-            #         best_action = action
-            if node.depth != self.tree_depth:
-                node.value = node.reward + gamma * sum([child.prob*child.value for child in node.best_action.children])
-            else:
+    def simulate_seq(self, node):
+        node.plt_node = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
+        frame.append(node.plt_node)
+
+        if node.depth == self.tree_depth:
+            return
+
+        if node.type == STATE:
+            self.simulate_seq(node.policy)
+
+        elif node.type == CHANCE:
+            ## Environment gives the next state based on probabilities
+            next_state_idx = random.choices(range(n_children), [child.prob for child in node.children])[0]
+            node.next_state = node.children[next_state_idx]
+
+            node.plt_seq_arrow = plt.arrow(node.x, node.y - 1, node.next_state.x - node.x,
+                                           node.next_state.y + 2 - node.y,
+                                           ec='y', width=0.1)
+            frame.append(node.plt_seq_arrow)
+            self.simulate_seq(node.next_state)
+
+    def value_eval(self, node, gamma):
+        if node.type == STATE:
+            if node.depth == self.tree_depth:
                 node.value = node.reward
-
-            ## plot value
-            plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
-            frames.append(plt1)
-
-            if node.value_text == None:
-                node.value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
             else:
-                frames.remove(node.value_text)
-                node.value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
+                node.value = node.reward + gamma * self.value_eval(node.policy, gamma)
 
-            frames.append(node.value_text)
-            ims.append(frames.copy())
+            node.value_list.append(node.value)
+            node.value_average = sum(node.value_list) / len(node.value_list)
 
-            plt3 = plt.scatter(node.x, node.y, c='g', marker='o', s=400)
-            frames.append(plt3)
-            ims.append(frames.copy())
+            if node.plt_v_l_text in frame:  ## if previously plotted, remove them
+                frame.remove(node.plt_v_l_text)
+                frame.remove(node.plt_v_a_text)
+            node.plt_v_l_text = plt.text(node.x - 2, node.y, [float('{:.2f}'.format(i)) for i in node.value_list], c='r', fontsize=12, horizontalalignment='right', clip_box=dict(ec='w'))
+            node.plt_v_a_text = plt.text(node.x - 2, node.y+1, "%.2f" % node.value_average, c='r', fontsize=12)
+            frame.append(node.plt_v_l_text)
+            frame.append(node.plt_v_a_text)
 
-            # ## plot best action
-            # if node.depth != self.tree_depth:
-            #     if node.best_action_arrow == None:
-            #         node.best_action_arrow = plt.arrow(node.x, node.y-1, best_action.x-node.x, best_action.y+2-node.y, ec='r', width=0.1)
-            #
-            #     else:
-            #         if best_action != node.best_action:
-            #             frames.remove(node.best_action_arrow)
-            #             node.best_action_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x,
-            #                                                best_action.y + 2 - node.y, ec='r', width=0.1)
-            #
-            #     frames.append(node.best_action_arrow)
-            #     ims.append(frames.copy())
+            return node.value
 
-        ## recursion
-        for child in node.children:
-            self.Bellman_update_with_policy(child, gamma)
+        if node.type == CHANCE:
+            return self.value_eval(node.next_state, gamma)
 
-
-    def update_policy(self, node):
-        if node.type == MAX:
-            best_action = None
-            for action in node.children:
-                current = sum([child.prob * child.value for child in node.best_action.children])
-                if sum([child.prob*child.value for child in action.children]) > current:
-                    best_action = action
-                    self.unchanged = False
-
-            if best_action:
-                node.best_action = best_action
-
-                frames.remove(node.best_action_arrow)
-                node.best_action_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x,
-                                                   best_action.y + 2 - node.y, ec='r', width=0.1)
-
-                frames.append(node.best_action_arrow)
-                ims.append(frames.copy())
-
-        for child in node.children:
-            self.update_policy(child)
-
-
-
-    def policy_iteration(self, gamma):
+    def Monte_Carlo_PE(self, gamma, budget):
         round = 0
-        while True:
-            print('round',round)
-            plt1 = plt.text(-(n_children**n_depth-1)*10 / 2, 0, "Round: %d"%round, fontsize=20, bbox={'fc':'w', 'ec':'k'})
-            frames.append(plt1)
-            ims.append(frames.copy())
+        while round<budget:
+            i=0
+            while i<len(frame):
+                if not isinstance(frame[i], matplotlib.text.Text):
+                    frame.remove(frame[i])
+                else:
+                    i += 1
 
-            self.unchanged = True
-            self.Bellman_update_with_policy(self.root, gamma)
-            self.update_policy(self.root)
+            print('round', round+1)
+            plt1 = plt.text(-(n_children ** n_depth - 1) * 10 / 2, 0, "Round: %d" % (round+1), fontsize=20,
+                            bbox={'fc': 'w', 'ec': 'k'})
 
-            if self.unchanged:
-                break
+            frame.append(plt1)
+            self.simulate_seq(self.root)
+            self.value_eval(self.root, gamma)
+            ims.append(frame.copy())
             round += 1
-
-        print(self.root.value)
         return
-
 
 def main():
     plt.axis('off')
     plt.tight_layout()
 
-    VI = PolicyIter(n_depth)
-    VI.policy_iteration(gamma)
+    mc = MCPE(n_depth)
+    mc.Monte_Carlo_PE(gamma, budget)
 
     ani = animation.ArtistAnimation(fig, ims, interval=1)
-    writer = PillowWriter(fps=3)
-    ani.save("./gif/policy_iter.gif", writer=writer)
-    plt.show()
+    writer = PillowWriter(fps=1)
+    ani.save("./gif/MC_PE.gif", writer=writer)
 
 if __name__ == "__main__":
     main()
