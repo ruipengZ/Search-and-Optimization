@@ -1,3 +1,7 @@
+---
+typora-root-url: ../Search-and-Optimization
+---
+
 # Search-and-Optimization
 This is a search and optimization library
 
@@ -91,8 +95,8 @@ Here are the one and two dimensional example visualization for gradient descent.
 
 * One Dimensional Case
 
-<img src="/Users/ruipeng/Desktop/CSE257/Search-and-Optimization/Descent_Method/gif/GD_1.gif" style="zoom:80%;" />
+![](/Descent_Method/gif/GD_1.gif)
 
 * Two Dimensional Case
 
-![](/Users/ruipeng/Desktop/CSE257/Search-and-Optimization/Descent_Method/gif/GD_2.gif)
+![](/Descent_Method/gif/GD_2.gif)
