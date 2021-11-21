@@ -89,10 +89,10 @@ Gradient Descent is widely used in optimization and machine learning areas becau
 
 Here are the one and two dimensional example visualization for gradient descent. 
 
-* One Dimensional Case with function ![](http://latex.codecogs.com/gif.latex?\\y=x^2)
+* One Dimensional Case
 
 <img src="/Users/ruipeng/Desktop/CSE257/Search-and-Optimization/Descent_Method/gif/GD_1.gif" style="zoom:80%;" />
 
-* Two Dimensional Case with function $y=x_1^2-2x_2^2$
+* Two Dimensional Case
 
 ![](/Users/ruipeng/Desktop/CSE257/Search-and-Optimization/Descent_Method/gif/GD_2.gif)
