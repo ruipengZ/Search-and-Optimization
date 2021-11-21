@@ -10,7 +10,7 @@ from matplotlib.animation import PillowWriter
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n_children", type=int, default= 2, help="number of children of every node")
-parser.add_argument("--n_depth", type=int, default= 4, help="depth of tree")
+parser.add_argument("--n_depth", type=int, default= 6, help="depth of tree")
 parser.add_argument("--gamma", type=float, default= 0.1, help="decay rate of reward")
 parser.add_argument("--budget", type=int, default= 6, help="max iterations of Monte-Carlo process")
 args = parser.parse_args()
@@ -66,25 +66,28 @@ class MCPE():
         self.draw_tree(self.root)
 
     def build_tree(self, node):
-        interval = 10 * n_children ** (self.tree_depth-node.depth)
-        pos_list = [-(n_children-1)*interval/2]
-        for _ in range(n_children-1):
-            pos_list += [pos_list[-1]+interval]
 
         if node.depth == self.tree_depth:
             return
 
         if node.type == STATE:
-            if node.depth == 0:  ## root node always take the exact action
-                node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
-                node.policy = node.children[0]
-            else:
-                for i in range(n_children):
-                    node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
-                ## Default use a random fixed policy
-                node.policy = node.children[random.randint(0,n_children-1)]
+            # if node.depth == 0:  ## root node always take the exact action
+            #     node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
+            #     node.policy = node.children[0]
+            # else:
+            #     for i in range(n_children):
+            #         node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
+            #     ## Default use a random fixed policy
+            #     node.policy = node.children[random.randint(0,n_children-1)]
+            node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
+            node.policy = node.children[0]
 
         else:
+            interval = 10 * n_children ** (self.tree_depth - node.depth//2)
+            pos_list = [-(n_children - 1) * interval / 2]
+            for _ in range(n_children - 1):
+                pos_list += [pos_list[-1] + interval]
+
             ## Generate transition probabilities, unknown for the state
             prob_list = [random.random() for _ in range(3)]
             s = sum(prob_list)
@@ -102,7 +105,7 @@ class MCPE():
             color = 'g'
             plt.scatter(node.x, node.y, c=color, marker='o', s=400)
             ## plot reward
-            plt.text(node.x + 2, node.y, "%d" % node.reward, fontsize=12)
+            plt.text(node.x + 12, node.y-1, "%d" % node.reward, fontsize=12)
             for child in node.children:
                 ## plot arrow
                 plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y)
@@ -110,7 +113,7 @@ class MCPE():
             ## plot the fixed policy
             if node.depth != self.tree_depth:
                 plt.arrow(node.x, node.y - 1, node.policy.x - node.x,
-                          node.policy.y + 2 - node.y, ec='r', width=0.1)
+                          node.policy.y + 2 - node.y, ec='y', width=0.1)
 
         elif node.type == CHANCE:
             ## plot node
@@ -118,9 +121,9 @@ class MCPE():
             plt.scatter(node.x, node.y, c=color, marker='o', s=400)
             for child in node.children:
                 ## plot arrow and policy arrow
-                plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y)
+                plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y, ec='b')
                 ## plot transition prob as ?
-                plt.text((node.x + child.x) / 2 , (node.y + child.y) / 2, "?", fontsize=12)
+                plt.text((node.x + child.x) / 2, (node.y + child.y) / 2, "?", fontsize=15, c='b')
                 self.draw_tree(child)
 
         return
@@ -143,7 +146,7 @@ class MCPE():
 
             node.plt_seq_arrow = plt.arrow(node.x, node.y - 1, node.next_state.x - node.x,
                                            node.next_state.y + 2 - node.y,
-                                           ec='y', width=0.1)
+                                           ec='r', width=0.1)
             frame.append(node.plt_seq_arrow)
             self.simulate_seq(node.next_state)
 
@@ -160,8 +163,8 @@ class MCPE():
             if node.plt_v_l_text in frame:  ## if previously plotted, remove them
                 frame.remove(node.plt_v_l_text)
                 frame.remove(node.plt_v_a_text)
-            node.plt_v_l_text = plt.text(node.x - 2, node.y, [float('{:.2f}'.format(i)) for i in node.value_list], c='r', fontsize=12, horizontalalignment='right', clip_box=dict(ec='w'))
-            node.plt_v_a_text = plt.text(node.x - 2, node.y+1, "%.2f" % node.value_average, c='r', fontsize=12)
+            node.plt_v_l_text = plt.text(node.x - 5, node.y, [float('{:.2f}'.format(i)) for i in node.value_list], c='r', fontsize=12, horizontalalignment='right', clip_box=dict(ec='w'))
+            node.plt_v_a_text = plt.text(node.x - 10, node.y+2, "%.2f" % node.value_average, c='r', fontsize=12)
             frame.append(node.plt_v_l_text)
             frame.append(node.plt_v_a_text)
 
@@ -181,7 +184,7 @@ class MCPE():
                     i += 1
 
             print('round', round+1)
-            plt1 = plt.text(-(n_children ** n_depth - 1) * 10 / 2, 0, "Round: %d" % (round+1), fontsize=20,
+            plt1 = plt.text(-500, 0, "Round: %d" % (round+1), fontsize=20,
                             bbox={'fc': 'w', 'ec': 'k'})
 
             frame.append(plt1)
@@ -196,6 +199,7 @@ def main():
     plt.tight_layout()
 
     mc = MCPE(n_depth)
+    ims.append(frame.copy())
     mc.Monte_Carlo_PE(gamma, budget)
 
     ani = animation.ArtistAnimation(fig, ims, interval=1)

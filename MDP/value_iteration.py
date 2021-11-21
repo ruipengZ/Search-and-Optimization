@@ -40,9 +40,9 @@ class Node():
 
         if self.type == STATE:
             self.value = 0
-            self.value_text = None
-            self.best_action = None
-            self.best_action_arrow = None
+            self.plt_value_text = None
+            self.policy = None
+            self.plt_policy_arrow = None
 
 
 
@@ -126,13 +126,13 @@ class ValueIter():
             plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
             frames.append(plt1)
 
-            if node.plt_v_l_text == None:
-                node.plt_v_l_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
+            if node.plt_value_text == None:
+                node.plt_value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
             else:
-                frames.remove(node.plt_v_l_text)
-                node.plt_v_l_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
+                frames.remove(node.plt_value_text)
+                node.plt_value_text = plt.text(node.x - 10.5, node.y, "%.2f" % node.value, c='r', fontsize=10)
 
-            frames.append(node.plt_v_l_text)
+            frames.append(node.plt_value_text)
             ims.append(frames.copy())
 
             plt3 = plt.scatter(node.x, node.y, c='g', marker='o', s=400)
