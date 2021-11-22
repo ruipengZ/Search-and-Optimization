@@ -1,5 +1,8 @@
-# Search-and-Optimization
-This is a search and optimization library
+# Welcome
+
+This is a library for search and optimization algorithms. The basic topics are covered which include Descent Method, Stochastic Search, Path Search, MDP-related and RL related algorithms. By using this library, you are expected to see basic ideas behind the algorithms through simple but intuitive visualizations.
+
+Hope you can have fun in search and optimization! Any problems with the algorithm or implementation or other problems please feel free to contact me!
 
 
 
@@ -35,11 +38,7 @@ This is a search and optimization library
     * [Temporal Difference Policy Evaluation](#Temporal-Difference-Policy-Evaluation)
     * [Tabular Q-Learning](#Tabular-Q-Learning)
 
-# Welcome
 
-This is a library for search and optimization algorithms. The basic topics are covered which include Descent Method, Stochastic Search, Path Search, MDP-related and RL related algorithms. By using this library, you are expected to see basic ideas behind the algorithms through simple but intuitive visualizations.
-
-Hope you can have fun in search and optimization! Any problems with the algorithm or implementation or other problems please feel free to contact me!
 
 # Requirements
 
