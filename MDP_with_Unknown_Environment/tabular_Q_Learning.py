@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--n_children", type=int, default= 2, help="number of children of every node")
 parser.add_argument("--n_depth", type=int, default= 4, help="depth of tree")
 parser.add_argument("--gamma", type=float, default= 0.1, help="decay rate of reward")
-parser.add_argument("--budget", type=int, default= 50, help="max iterations of Monte-Carlo process")
+parser.add_argument("--budget", type=int, default= 100, help="max iterations of Monte-Carlo process")
 parser.add_argument("--epsilon", type=float, default= 0.3, help="epsilon-greedy policy")
 
 
@@ -45,7 +45,7 @@ class Node():
         if self.type == STATE:
             self.reward = reward
             self.prob = prob
-            self.policy = None
+            self.action = None
             ## for visualization
 
         if self.type == CHANCE:
@@ -121,11 +121,6 @@ class T_QL():
                     plt.arrow(node.x, node.y - 1, child.x - node.x, child.y + 2 - node.y)
                     self.draw_tree(child)
 
-            # ## plot the fixed policy
-            # if node.depth != self.tree_depth:
-            #     plt.arrow(node.x, node.y - 1, node.action.x - node.x,
-            #               node.action.y + 2 - node.y, ec='y', width=0.1)
-
         elif node.type == CHANCE:
             ## plot node
             color = 'b'
@@ -171,16 +166,16 @@ class T_QL():
 
 
         if node.depth == self.tree_depth:
-
-            # plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
-            # frame.append(plt1)
-            # ims.append(frame.copy())
+            plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
+            frame.append(plt1)
+            ims.append(frame.copy())
 
             ## only one action
             alpha = 10 / (9 + node.action.visited)
             node.action.Q_value = node.action.Q_value +  alpha * (node.reward - node.action.Q_value)
             node.action.visited += 1
             self.clear_frame_but_text()
+
             return
 
 
@@ -270,6 +265,19 @@ class T_QL():
             round += 1
         return
 
+    def show_best(self):
+        for state in self.state_list:
+            if state.depth!=self.tree_depth:
+                mx = -1
+                for child in state.children:
+                    if child.Q_value > mx:
+                        best_action = child
+                        mx = child.Q_value
+                plt1 = plt.arrow(state.x, state.y - 1, best_action.x - state.x, best_action.y + 2 - state.y, ec='r',
+                                fc='r', width=0.1)
+                frame.append(plt1)
+        ims.append(frame.copy())
+
 
 def main():
     plt.axis('off')
@@ -277,10 +285,11 @@ def main():
 
     tab_q_l = T_QL(n_depth)
     ims.append(frame.copy())
-    tab_q_l.Tabular_QL(gamma, budget)
 
+    tab_q_l.Tabular_QL(gamma, budget)
+    tab_q_l.show_best()
     ani = animation.ArtistAnimation(fig, ims, interval=1)
-    writer = PillowWriter(fps=1)
+    writer = PillowWriter(fps=2)
     ani.save("./gif/T_QL.gif", writer=writer)
 
 

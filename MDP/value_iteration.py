@@ -61,7 +61,6 @@ class ValueIter():
         for _ in range(n_children-1):
             pos_list += [pos_list[-1]+interval]
 
-        # pos_list = [-10*n_children**(self.tree_depth-node.depth), 0, 10*n_children**(self.tree_depth-node.depth)]
         if node.depth == self.tree_depth:
             return
 

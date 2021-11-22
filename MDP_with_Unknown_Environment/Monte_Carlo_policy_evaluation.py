@@ -71,14 +71,6 @@ class MCPE():
             return
 
         if node.type == STATE:
-            # if node.depth == 0:  ## root node always take the exact action
-            #     node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
-            #     node.policy = node.children[0]
-            # else:
-            #     for i in range(n_children):
-            #         node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x + pos_list[i], node.y-10))
-            #     ## Default use a random fixed policy
-            #     node.policy = node.children[random.randint(0,n_children-1)]
             node.children.append(Node(CHANCE, node.depth + 1, None, None, node.x, node.y - 10))
             node.policy = node.children[0]
 

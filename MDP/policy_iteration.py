@@ -112,13 +112,6 @@ class PolicyIter():
 
     def Bellman_update_with_policy(self, node, gamma):
         if node.type == STATE: ## Bellman update on state
-            # prev_value = node.value
-            # mx = 0
-            # best_action = None
-            # for action in node.children:
-            #     if sum([child.prob*child.value for child in action.children]) >= mx:
-            #         mx = sum([child.prob*child.value for child in action.children])
-            #         best_action = action
             if node.depth != self.tree_depth:
                 node.value = node.reward + gamma * sum([child.prob * child.value for child in node.policy.children])
             else:
@@ -140,20 +133,6 @@ class PolicyIter():
             plt3 = plt.scatter(node.x, node.y, c='g', marker='o', s=400)
             frames.append(plt3)
             ims.append(frames.copy())
-
-            # ## plot best action
-            # if node.depth != self.tree_depth:
-            #     if node.best_action_arrow == None:
-            #         node.best_action_arrow = plt.arrow(node.x, node.y-1, best_action.x-node.x, best_action.y+2-node.y, ec='r', width=0.1)
-            #
-            #     else:
-            #         if best_action != node.best_action:
-            #             frames.remove(node.best_action_arrow)
-            #             node.best_action_arrow = plt.arrow(node.x, node.y - 1, best_action.x - node.x,
-            #                                                best_action.y + 2 - node.y, ec='r', width=0.1)
-            #
-            #     frames.append(node.best_action_arrow)
-            #     ims.append(frames.copy())
 
         ## recursion
         for child in node.children:

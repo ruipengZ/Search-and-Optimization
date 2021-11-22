@@ -22,19 +22,23 @@ plt.title('Y = X1^2 - 2*X2^2')
 ims = []
 frames = []
 x = [5,5]
-n_samples = 20
+n_samples = 50
 
 loss = []
-samples = np.random.multivariate_normal(x, np.eye(np.shape(x)[0]), n_samples)
+samples = np.random.multivariate_normal(x, np.eye(np.shape(x)[0])*5, n_samples)
 for i in range(10):
     frame_i = []
-    for sam in samples:
-        frame_i.append(plt.scatter(sam[0], sam[1]))
-    ims.append(frame_i.copy())
-
     loss_samples = np.array([func(samples[i][0],samples[i][1]) for i in range(np.shape(samples)[0])])
     loss += [np.mean(loss_samples)]
-    elite_samples = samples[np.argsort(loss_samples)[:int(n_samples*0.5)]]
+    elite_samples = samples[np.argsort(loss_samples)[:int(n_samples*0.3)]]
+
+    for sam in samples:
+        if sam in elite_samples:
+            frame_i.append(plt.scatter(sam[0], sam[1],c='r'))
+        else:
+            frame_i.append(plt.scatter(sam[0], sam[1],c='g'))
+    ims.append(frame_i.copy())
+
     new_mean = np.mean(elite_samples, axis = 0)
     new_sigma = np.cov(elite_samples.transpose(),ddof=0)
     samples = np.random.multivariate_normal(new_mean, new_sigma, n_samples)

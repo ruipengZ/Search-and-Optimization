@@ -23,6 +23,7 @@ class Node():
         self.depth = depth
         self.children = []
         self.payoff = payoff
+        self.best_child = None
         self.x = x
         self.y = y
 
@@ -60,7 +61,7 @@ class Minimax_search():
         if node.type == MAX:
             color = 'g'
         elif node.type == MIN:
-            color = 'r'
+            color = 'b'
         else:
             color = 'grey'
             plt.annotate("%d" % node.payoff, xy=(node.x, node.y), xytext=(node.x - 5, node.y - 1.5), weight='heavy')
@@ -81,10 +82,10 @@ class Minimax_search():
             for child in node.children:
                 if self.minimax(child) > value:
                     value = self.minimax(child)
-                    best_child = child
+                    node.best_child = child
 
-            plt1 = plt.arrow(node.x, node.y-1, best_child.x-node.x, best_child.y+2-node.y, ec='r', fc='r', width=0.1)
-            plt2 = plt.text(node.x + 15, node.y, "%d" % value, fontsize=15)
+            plt1 = plt.arrow(node.x, node.y-1, node.best_child.x-node.x, node.best_child.y+2-node.y, ec='darkorange', width=0.1)
+            plt2 = plt.text(node.x + 15, node.y, "%d" % value, fontsize=15,c='darkorange')
             frames.append(plt1)
             frames.append(plt2)
             ims.append(frames.copy())
@@ -95,14 +96,24 @@ class Minimax_search():
             for child in node.children:
                 if self.minimax(child) < value:
                     value = self.minimax(child)
-                    best_child = child
+                    node.best_child = child
 
-            plt1=plt.arrow(node.x, node.y-1, best_child.x-node.x, best_child.y+2-node.y, ec='r', fc='r', width=0.1)
-            plt2=plt.text(node.x+15, node.y, "%d" % value, fontsize=15)
+            plt1=plt.arrow(node.x, node.y-1, node.best_child.x-node.x, node.best_child.y+2-node.y, ec='darkorange', width=0.1)
+            plt2=plt.text(node.x+15, node.y, "%d" % value, fontsize=15, c='darkorange')
             frames.append(plt1)
             frames.append(plt2)
             ims.append(frames.copy())
             return value
+
+    def show_best(self, node):
+        plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
+        frames.append(plt1)
+        if node.best_child:
+            plt2 = plt.arrow(node.x, node.y - 1, node.best_child.x - node.x, node.best_child.y + 2 - node.y, ec='r',
+                             fc='r', width=0.1)
+            frames.append(plt2)
+            self.show_best(node.best_child)
+
 
 
 def main():
@@ -111,9 +122,10 @@ def main():
 
     mm_search = Minimax_search(n_depth,MAX)
     mm_search.minimax(mm_search.root)
-
+    mm_search.show_best(mm_search.root)
+    ims.append(frames.copy())
     ani = animation.ArtistAnimation(fig, ims, interval=1)
-    writer = PillowWriter(fps=3)
+    writer = PillowWriter(fps=1)
     ani.save("./gif/minimax.gif", writer=writer)
 
 

@@ -1,3 +1,4 @@
+import warnings
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -14,7 +15,7 @@ def sample_prob(prob_acc, x, x_):
     else:
         return x
 
-x1_func = np.arange(-10, 10, 0.01)
+x1_func = np.arange(-10, 12.5, 0.01)
 x2_func = np.arange(-10, 10, 0.01)
 x1_func, x2_func = np.meshgrid(x1_func, x2_func)
 
@@ -30,15 +31,17 @@ ims = []
 frames = []
 
 x = [5, 5]
-n_samples = 20
+n_samples = 50
 
 mu = x
-sigma = np.eye(np.shape(x)[0])
+sigma = np.eye(np.shape(x)[0])*3
 eta = 0.1
 
 for _ in range(100):
-    samples = np.random.multivariate_normal(mu, sigma, n_samples)
+    if not np.all(np.linalg.eigvals(sigma)>0):
+        break
 
+    samples = np.random.multivariate_normal(mu, sigma, n_samples)
     frame_i = []
     for sam in samples:
         frame_i.append(plt.scatter(sam[0], sam[1]))
