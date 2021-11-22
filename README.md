@@ -29,8 +29,7 @@ Hope you can have fun in search and optimization! Any problems with the algorith
 * [Documentation](#Documentation)
 * [How to use](#How-to-use)
 * [Algorithms](#Algorithms)
-
-* * [Descent Method](#Descent-Method)
+  * [Descent Method](#Descent-Method)
     * [Gradient Descent](#Gradient-Descent)
     * [Newton's Method](#Newton's-Method)
     * [Conjugate Descent](#Conjugate-Descent)
