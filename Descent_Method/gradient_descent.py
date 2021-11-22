@@ -22,7 +22,7 @@ def one_dimensional():
     alpha = 0.1
     ims=[]
     frames = []
-    for i in range(50):
+    for i in range(10):
         x_ = x - alpha*gradient_1(x)
         frame = plt.arrow(x, func_1(x), x_-x, func_1(x_)-func_1(x), width=0.1, color='r')
         frames.append(frame)
@@ -59,7 +59,7 @@ def two_dimensional():
     frames = []
     x1 = 10
     x2 = 10
-    for i in range(50):
+    for i in range(10):
         x1_ = x1 - alpha * gradient_2(x1, x2)[0]
         x2_ = x2 - alpha * gradient_2(x1, x2)[1]
         frame = plt.arrow(x1, x2, x1_-x1, x2_-x2, width=0.1, color='r')
