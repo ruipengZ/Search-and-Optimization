@@ -9,7 +9,7 @@ This is a search and optimization library
 
 # Table of Contents
 
-* [Welcome?](#Welcome)
+* [Welcome](#Welcome)
 
 * [Requirements](#requirements)
 
@@ -17,10 +17,10 @@ This is a search and optimization library
 
 * [How to use](#how-to-use)
 * [Algorithms](#Algorithms)
-  * [Descent Method](#Descent Method)
-    * [Gradient Descent](#Gradient Descent)
-    * [Newton's Method](#Newton's Method)
-    * [Conjugate Descent](#[Conjugate Descent]())
+  * [Descent Method](#Descent-Method)
+    * [Gradient Descent](#Gradient-Descent)
+    * [Newton's Method](#Newton's-Method)
+    * [Conjugate Descent](#Conjugate-Descent)
     * [Comparison of Descent Methods](#Comparison of Descent Methods)
   * [Stochastic Search](#Stochastic Search)
     * [Simulated Annealing](#Simulated Annealing)
