@@ -25,14 +25,12 @@ Hope you can have fun in search and optimization! Any problems with the algorith
 # Table of Contents
 
 * [Welcome](#Welcome)
-
-* [Requirements](#requirements)
-
-* [Documentation](#documentation)
-
-* [How to use](#how-to-use)
+* [Requirements](#Requirements)
+* [Documentation](#Documentation)
+* [How to use](#How-to-use)
 * [Algorithms](#Algorithms)
-  * [Descent Method](#Descent-Method)
+
+* * [Descent Method](#Descent-Method)
     * [Gradient Descent](#Gradient-Descent)
     * [Newton's Method](#Newton's-Method)
     * [Conjugate Descent](#Conjugate-Descent)
