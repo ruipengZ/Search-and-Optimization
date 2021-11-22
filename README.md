@@ -1,7 +1,7 @@
 # Search and Optimization
 
 <div align=left>
-  <img align="left" src="logo.png" style="zoom:25%;" />
+  <img align="left" src="./logo.png" style="zoom:25%;" />
 </div>
 
 This is a Python library for Search and Optimization.
