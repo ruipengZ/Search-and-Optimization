@@ -261,7 +261,7 @@ Here is the visualization on the same MDP as in the Value Iteration. Nodes and a
 
 Here are the final state of the two algorithms:
 
-<img src="./MDP/gif/value_f.jpg" width="50%"/><img src="./MDP/gif/policy_f.jpg" width="50%"/>
+<img src="./MDP/gif/value_f.gif" width="50%"/><img src="./MDP/gif/policy_f.gif" width="50%"/>
 
 As we can see from the final state of the two algorithms given the same MDP, the two algorithms output the same optimal policy, whereas the Policy Iteration may not output the final value of states because the algorithm stops when policy is stabilized.
 
