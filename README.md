@@ -50,6 +50,7 @@ Hope you can have fun in search and optimization! Any problems with the algorith
     * [Monte Carlo Policy Evaluation](#Monte-Carlo-Policy-Evaluation)
     * [Temporal Difference Policy Evaluation](#Temporal-Difference-Policy-Evaluation)
     * [Tabular Q-Learning](#Tabular-Q-Learning)
+    * [Deep Q-Learning](#Deep-Q-Learning)
 
 
 
@@ -299,3 +300,12 @@ The visualization is as follow. We plot Q-value Q(s,a) in red next to the enviro
 
 
 
+### Deep Q-Learning
+
+Tabular Q-learning store Q value for every state-action pairs. But we can use expressive function approximations to store values or/and policies. By doing this, we are no longer limited by table size or discretization and have better generalizability. Also we can directly manipulate the policies.
+
+Deep Q-learning substitue the storting process in Tabular Q-learning with a deep neural network. It keep adding new experience in the pool of samples "Experience Replay" and every time takes a batch from the pool and fit a network to the new Q-value.
+
+Here we display a more interesting example - a catching block game. A board on the bottom catches the falling block. We treat the current image of the game as state and the bottom board can take actions to move to the left or right. By doing deep Q-learning, we can get a smart AI game player.
+
+![](./MDP_with_Unknown_Environment/gif/D_QL.gif)
