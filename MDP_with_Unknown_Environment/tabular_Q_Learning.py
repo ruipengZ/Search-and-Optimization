@@ -1,4 +1,4 @@
-### Monte-Carlo Policy Evaluation on Tree(n children) MDP
+### Tabular Q-learning on Tree(n children) MDP
 import random
 import numpy as np
 import argparse
@@ -81,7 +81,6 @@ class T_QL():
         for _ in range(n_children - 1):
             pos_list += [pos_list[-1] + interval]
 
-        # pos_list = [-10*n_children**(self.tree_depth-node.depth), 0, 10*n_children**(self.tree_depth-node.depth)]
         if node.depth == self.tree_depth:
             self.state_list.append(node)
             ## add a terminal child
@@ -164,7 +163,6 @@ class T_QL():
 
     def Q_value_update(self, node, gamma):
 
-
         if node.depth == self.tree_depth:
             plt1 = plt.scatter(node.x, node.y, c='r', marker='o', s=400)
             frame.append(plt1)
@@ -175,9 +173,7 @@ class T_QL():
             node.action.Q_value = node.action.Q_value +  alpha * (node.reward - node.action.Q_value)
             node.action.visited += 1
             self.clear_frame_but_text()
-
             return
-
 
         else:
             self.pick_action(node)

@@ -1,4 +1,4 @@
-### Value Iteration on Tree(n children) MDP
+### Policy Iteration on Tree(n children) MDP
 import random
 import numpy as np
 import argparse
