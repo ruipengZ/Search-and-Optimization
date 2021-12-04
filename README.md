@@ -51,6 +51,7 @@ Hope you can have fun in search and optimization! Any problems with the algorith
     * [Temporal Difference Policy Evaluation](#Temporal-Difference-Policy-Evaluation)
     * [Tabular Q-Learning](#Tabular-Q-Learning)
     * [Deep Q-Learning](#Deep-Q-Learning)
+  * [Monte-Carlo Tree Search](#Monte-Carlo-Tree-Search)
 
 
 
@@ -309,3 +310,14 @@ Deep Q-learning substitue the storting process in Tabular Q-learning with a deep
 Here we display a more interesting example - a catching block game. A board on the bottom catches the falling block. We treat the current image of the game as state and the bottom board can take actions to move to the left or right. By doing deep Q-learning, we can get a smart AI game player.
 
 ![](./MDP_with_Unknown_Environment/gif/D_QL.gif)
+
+## Monte-Carlo Tree Search
+
+Usually, the game tree can be extremely large like chess game which can take an impractical amount of time to do a full search of the game tree. Instead of growing game tree fully, we can use Monte-Carlo Tree Search to smartly grow game tree and ultimately make actions.
+
+MCTS consists of Tree policy (selection and expansion of the tree), Default policy (simulation of the game) and backpropgation(update the value and number of visits of the game state).
+
+We also use the tree structure to show how MCTS works. The green, blue, grey represents max player, min player and root player WON/LOST game state respectively. When backpropagating, we plot won/number of visited next to the node. After doing MCTS we can choose the best action for the current state.
+
+![](./MCTS/gif/MCTS.gif)
+
