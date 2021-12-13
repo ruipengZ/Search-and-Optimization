@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search and Optimization &mdash; Search-and-Optimization 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Search-and-Optimization’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Search-and-Optimization
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Search and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#welcome">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#how-to-use">How to use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#algorithms">Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descent-method">Descent Method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gradient-descent">Gradient Descent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#newton-s-method">Newton’s Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conjugate-descent">Conjugate Descent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-of-descent-methods">Comparison of Descent Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stochastic-search">Stochastic Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulated-annealing">Simulated Annealing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-entropy-methods">Cross Entropy Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search-gradient">Search Gradient</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#path-search">Path Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-search">A* Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimax-search">Minimax Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#markov-decision-process">Markov Decision Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#value-iteration">Value Iteration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#policy-iteration">Policy Iteration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-of-value-and-policy-iteration">Comparison of Value and Policy Iteration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mdp-with-unknown-environment">MDP with Unknown Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#monte-carlo-policy-evaluation">Monte Carlo Policy Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temporal-difference-policy-evaluation">Temporal Difference Policy Evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tabular-q-learning">Tabular Q-Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deep-q-learning">Deep Q-Learning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#monte-carlo-tree-search">Monte-Carlo Tree Search</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Search-and-Optimization</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Search and Optimization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="search-and-optimization">
+<h1>Search and Optimization<a class="headerlink" href="#search-and-optimization" title="Permalink to this headline"></a></h1>
+<div align=left>
+  <img align="left" src="./logo.png" width="40%" />
+</div>
+<p>This is a Python library for Search and Optimization.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="welcome">
+<h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline"></a></h1>
+<p>This is a library for search and optimization algorithms. The basic topics are covered which include Descent Method, Stochastic Search, Path Search, MDP-related and RL related algorithms. By using this library, you are expected to see basic ideas behind the algorithms through simple but intuitive visualizations.</p>
+<p>Hope you can have fun in search and optimization! Any problems with the algorithm or implementation or other problems please feel free to contact me!</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="#Welcome">Welcome</a></p></li>
+<li><p><a class="reference external" href="#Requirements">Requirements</a></p></li>
+<li><p><a class="reference external" href="#Documentation">Documentation</a></p></li>
+<li><p><a class="reference external" href="#How-to-use">How to use</a></p></li>
+<li><p><a class="reference external" href="#Algorithms">Algorithms</a></p>
+<ul>
+<li><p><a class="reference external" href="#Descent-Method">Descent Method</a></p>
+<ul>
+<li><p><a class="reference external" href="#Gradient-Descent">Gradient Descent</a></p></li>
+<li><p><a class="reference external" href="#Newton's-Method">Newton’s Method</a></p></li>
+<li><p><a class="reference external" href="#Conjugate-Descent">Conjugate Descent</a></p></li>
+<li><p><a class="reference external" href="#Comparison-of-Descent-Methods">Comparison of Descent Methods</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Stochastic-Search">Stochastic Search</a></p>
+<ul>
+<li><p><a class="reference external" href="#Simulated-Annealing">Simulated Annealing</a></p></li>
+<li><p><a class="reference external" href="#Cross-Entropy-Method">Cross Entropy Method</a></p></li>
+<li><p><a class="reference external" href="#Search-Gradient">Search Gradient</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Path-Search">Path Search</a></p>
+<ul>
+<li><p><a class="reference external" href="#A*-Search">A* Search</a></p></li>
+<li><p><a class="reference external" href="#Minimax-Search">Minimax Search</a></p></li>
+<li><p><span class="xref myst">RRT(Rapid Exploring Random Tree)</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Markov-Decision-Process">Markov Decision Process</a></p>
+<ul>
+<li><p><a class="reference external" href="#Value-Iteration">Value Iteration</a></p></li>
+<li><p><a class="reference external" href="#Policy-Iteration">Policy Iteration</a></p></li>
+<li><p><a class="reference external" href="#Comparison-of-Value-and-Policy-Iteration">Comparison of Value and Policy Iteration</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#MDP-with-Unknown-Environment">MDP with Unknown Environment</a></p>
+<ul>
+<li><p><a class="reference external" href="#Monte-Carlo-Policy-Evaluation">Monte Carlo Policy Evaluation</a></p></li>
+<li><p><a class="reference external" href="#Temporal-Difference-Policy-Evaluation">Temporal Difference Policy Evaluation</a></p></li>
+<li><p><a class="reference external" href="#Tabular-Q-Learning">Tabular Q-Learning</a></p></li>
+<li><p><a class="reference external" href="#Deep-Q-Learning">Deep Q-Learning</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#Monte-Carlo-Tree-Search">Monte-Carlo Tree Search</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h1>
+<p>The implementation is quite simple and intuitive. If you can use conda, you are ready to go! If not, the requirements are:</p>
+<ul class="simple">
+<li><p>Python 3.8.x</p></li>
+<li><p>numpy</p></li>
+<li><p>matplotlib</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h1>
+<p>Under construction now. You can start with this README file :)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="how-to-use">
+<h1>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline"></a></h1>
+<ol class="arabic simple">
+<li><p>clone this repo.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/ruipengZ/Search-and-Optimization.git
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Install the required dependency</p>
+<ul>
+<li><p>Using conda</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f conda.yml
+</pre></div>
+</div>
+</li>
+<li><p>Using pip</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Run certain algorithms in the library then see the visualization.</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="algorithms">
+<h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline"></a></h1>
+<p>This repo covers the basic topics in Search and Optimization, including Descent Method, Stochastic Search, Path Search, MDP-related and RL related algorithms.</p>
+<section id="descent-method">
+<h2>Descent Method<a class="headerlink" href="#descent-method" title="Permalink to this headline"></a></h2>
+<p>Descent Method in general starts at some initial point and tries to get to the local minimum in descendent way. It includes gradient descent, Newton’s Method and conjugate descent.</p>
+<section id="gradient-descent">
+<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline"></a></h3>
+<p>Gradient Descent is widely used in optimization and machine learning areas because its simple calculation. It tries to take a small step towards the gradient descent direction to minimize the function.</p>
+<p>Here are the one and two dimensional example visualization for gradient descent.</p>
+<ul class="simple">
+<li><p>One Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/GD_1.gif" /></p>
+<ul class="simple">
+<li><p>Two Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/GD_2.gif" /></p>
+</section>
+<section id="newton-s-method">
+<h3>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline"></a></h3>
+<p>Gradient Descent uses the first derivative as guess of the function. Newton’s Method, instead uses a sequence of second-order Taylor approximations of around the iterates which gives rise to a faster descent process.</p>
+<ul class="simple">
+<li><p>One Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/ND_1.gif" /></p>
+<ul class="simple">
+<li><p>Two Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/ND_2.gif" /></p>
+<p>However fast and do not need a step size (learning rate), Newton’s Method has some drawbacks and caveats:</p>
+<ul class="simple">
+<li><p>The computation cost of inverting the Hessian could be non-trivial.</p></li>
+<li><p>It does not work if the Hessian is not invertible.</p></li>
+<li><p>It may not converge at all, but can enter a cycle having more than 1 point.</p></li>
+<li><p>It can converge to a saddle point instead of to a local minimum</p></li>
+</ul>
+<p>Reference:</p>
+<p>See details on https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization</p>
+</section>
+<section id="conjugate-descent">
+<h3>Conjugate Descent<a class="headerlink" href="#conjugate-descent" title="Permalink to this headline"></a></h3>
+<p>For quadratic problems, we can do better than generic directions of gradient. In Gradient Descent if we take the steepest descent, we always go onthogonal in every step. Can we go faster? Yes, Newton’s method gives us a faster one. But at the same time, we also want to avoid calculating the inversion of certain matrics. Conjugate gradients give us a better way to perform descent method because they allow us to minimize convex quadratic objectives in at most n steps and without inverting the matrics.</p>
+<ul class="simple">
+<li><p>One Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/CD_1.gif" /></p>
+<ul class="simple">
+<li><p>Two Dimensional Case</p></li>
+</ul>
+<p><img alt="" src="Descent_Method/gif/CD_2.gif" /></p>
+<p>Reference:</p>
+<p>you can find more details in the reference slides</p>
+<p>http://www.cs.cmu.edu/~pradeepr/convexopt/Lecture_Slides/conjugate_direction_methods.pdf</p>
+</section>
+<section id="comparison-of-descent-methods">
+<h3>Comparison of Descent Methods<a class="headerlink" href="#comparison-of-descent-methods" title="Permalink to this headline"></a></h3>
+<p>We can compare the visualization of the above three descent methods as follows:</p>
+<p><img src="./Descent_Method/gif/GD_1.gif" width="33%" /><img src="./Descent_Method/gif/CD_1.gif" width="33%" /><img src="./Descent_Method/gif/ND_1.gif" width="33%" /></p>
+<p><img src="./Descent_Method/gif/GD_2.gif" width="33%" /><img src="./Descent_Method/gif/CD_2.gif" width="33%" /><img src="./Descent_Method/gif/ND_2.gif" width="33%" /></p>
+<p>As you can see, Gradient Descent slowly move to the minimum whereas Conjugate Descent and Newton’s Method is faster. In the two dimensional case above, we can observe that Conjugate Descent can be regarded as being between the method of Gradient Descent (first-order method) and Newton’s method (second-order method).</p>
+</section>
+</section>
+<section id="stochastic-search">
+<h2>Stochastic Search<a class="headerlink" href="#stochastic-search" title="Permalink to this headline"></a></h2>
+<p>In some cases, we do not want to or cannot calculate the first or second derivate of the function. Or there are numerous local minimas of the function and the descent methods not work well. Instead, we can introduce some randomness into the optimization. Here we will cover algorithms including Simulated Annealing, Cross Entropy Method and Search Gradient.</p>
+<section id="simulated-annealing">
+<h3>Simulated Annealing<a class="headerlink" href="#simulated-annealing" title="Permalink to this headline"></a></h3>
+<p>Intuitively, Simulated Annealing is to start from one point, dive into the function and walk randomly, go downhill when we can but sometimes uphill to explore and try to jump out of this sub-optimal local minimum. We expect to gradually settle down by reducing the probability of exploring.</p>
+<p>For problems where finding an approximate global optimum is more important than finding a precise local optimum in a fixed amount of time, simulated annealing may be preferable to exact algorithms like descent methods.</p>
+<p>Here is the visualization of Simulated Annealing:</p>
+<p><img alt="" src="Stochastic_Search/gif/SA.gif" /></p>
+<p>Reference:</p>
+<p>https://en.wikipedia.org/wiki/Simulated_annealing</p>
+</section>
+<section id="cross-entropy-methods">
+<h3>Cross Entropy Methods<a class="headerlink" href="#cross-entropy-methods" title="Permalink to this headline"></a></h3>
+<p>Instead to take one sample of the function, Cross Entropy Methods sample a distribution. The key idea behind that is that finding a global minimum is equivalent to sampling a distribution centered around it.</p>
+<p>Cross Entropy Methods first start with an initial distribution (often a diagonal Gaussian), and then select a subset of samples with lower function values as elite samples. Then update the distribution to best fit those elite samples.</p>
+<p>Here is the visualization of CEM, where red points are elite samples.</p>
+<p><img alt="" src="Stochastic_Search/gif/CEM.gif" /></p>
+</section>
+<section id="search-gradient">
+<h3>Search Gradient<a class="headerlink" href="#search-gradient" title="Permalink to this headline"></a></h3>
+<p>In high dimensions, it can quickly become very inefficient to randomly sample. Ideally, we can use the derivative of the expectation of function value on the distribution we sampled, so that we can move the distribution in the direction that imroves the expectation. So Search Gradient borrows the idea of Gradient Method to do stochastic search. The overall algorithm uses this idea combined with log techniques, see reference for details.</p>
+<p>Here is the visualization of Search Gradient:</p>
+<p><img alt="" src="Stochastic_Search/gif/SG.gif" /></p>
+<p>Reference:</p>
+<p>“Natural Evolution  Strategies” Wierstra et al. JMLR 2014</p>
+</section>
+</section>
+<section id="path-search">
+<h2>Path Search<a class="headerlink" href="#path-search" title="Permalink to this headline"></a></h2>
+<p>As a pratical problem, Path Search can take on many forms, including shortest path searching, motion planing and playing game like zero-sum game between two players and so on. Here we present some of the useful algorithms.</p>
+<section id="a-search">
+<h3>A* Search<a class="headerlink" href="#a-search" title="Permalink to this headline"></a></h3>
+<p>Path Searching Algorithms including DFS (Depth First Search), BFS (Breadth First Search), UCS(Uniform Cost Search) are formulated in terms of weighted graphs: starting from a specific starting node of a graph, it aims to find a path to the given goal node having the smallest cost (least distance travelled, shortest time, etc.). They maintains a tree of paths originating at the start node and extending those paths one edge at a time until its termination criterion is satisfied. Whereas these algorithms are all uninformed search: you don’t know where you are unless you happen to hit the goal, A* search is a informed search with heuristic function to measure how close you are to the goal.</p>
+<p>Intuitively, it not only take account of the cost-to-come but also cost-to-go. We can see it as a special case of UCS whereas it uses the cost of real cost plus heuristic cost by adopting a heuristic function.</p>
+<p>You can find more details with the reference.</p>
+<p>Here is a visualization of a path searching process of A*. We start on the red star and the destination is blue star. Black grid are obstacles. Yellow cross are all the locations that have been searched and the final shortest path is red cross path.</p>
+<p><img alt="" src="Path_Search/gif/AStar.gif" /></p>
+<p>Reference:</p>
+<p>https://en.wikipedia.org/wiki/A*_search_algorithm</p>
+</section>
+<section id="minimax-search">
+<h3>Minimax Search<a class="headerlink" href="#minimax-search" title="Permalink to this headline"></a></h3>
+<p>Suppose we are playing games with another one in turn. At the end of the game, there are certain payoffs. In the game, we make every move to maximize our the benefit or value and the opponent tries to minimize it. We can use Minimax Search on this max-min-player game to calculate every value of a tree node and then make the best move.</p>
+<p>Here is the visualization for Minimax Search. The max players are the green nodes and blue nodes are the min players. At the end of the game, there are payoffs as grey nodes. Minimax calculate every nodes’ value and the choice from bottom to top, visualized as orange texts and arrows. Finally as the root max player, the red nodes and arrows are showed as how we should play the game to get the maximum benefit.</p>
+<p><img alt="" src="Path_Search/gif/minimax.gif" /></p>
+</section>
+</section>
+<section id="markov-decision-process">
+<h2>Markov Decision Process<a class="headerlink" href="#markov-decision-process" title="Permalink to this headline"></a></h2>
+<p>A Markov decision process is composed of states, actions, transition probabilities and reward of states. It provides a mathematical framework for modeling decision making in situations where outcomes are partly random and partly under the control of a decision maker. At each states, we not only want to maximize the short-term reward but also long-term. So evaluating the value of a state is essential in MDP.</p>
+<p>Value Iteration and Policy Iteration are algorithms where we have the full knowledge of the MDP (the transition probabilities are known), computing the optimal policy and value.</p>
+<section id="value-iteration">
+<h3>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline"></a></h3>
+<p>Value Iteration start with arbitrary state value and use Bellman Update to update the values and pick the best policy.</p>
+<p>Here is the visualization. Green nodes are state node and blue nodes are the environment with the transition probability on the arrow pointing to the next state. When we do Bellman Update on a certain state, it will be marked as red and a new value is updated on its left. The best action is labeled as red arrow. We do Bellman Update for rounds until it converges.</p>
+<p><img alt="" src="MDP/gif/value_iter.gif" /></p>
+</section>
+<section id="policy-iteration">
+<h3>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline"></a></h3>
+<p>Policy Iteration starts with an arbitrary policy and solve the Bellman Equations to evaluate the values defined by the policy, then check each state to see if we can improve the max value. We keep doing this until the policy is fixed.</p>
+<p>Here is the visualization on the same MDP as in the Value Iteration. Nodes and arrows are the same as in Value Iteration, where as every state start with an arbitrary policy and update it every round.</p>
+<p><img alt="" src="MDP/gif/policy_iter.gif" /></p>
+</section>
+<section id="comparison-of-value-and-policy-iteration">
+<h3>Comparison of Value and Policy Iteration<a class="headerlink" href="#comparison-of-value-and-policy-iteration" title="Permalink to this headline"></a></h3>
+<p>Here are the final state of the two algorithms:</p>
+<p><img src="./MDP/gif/value_f.gif" width="50%"/><img src="./MDP/gif/policy_f.gif" width="50%"/></p>
+<p>As we can see from the final state of the two algorithms given the same MDP, the two algorithms output the same optimal policy, whereas the Policy Iteration may not output the final value of states because the algorithm stops when policy is stabilized.</p>
+</section>
+</section>
+<section id="mdp-with-unknown-environment">
+<h2>MDP with Unknown Environment<a class="headerlink" href="#mdp-with-unknown-environment" title="Permalink to this headline"></a></h2>
+<p>In real world, we do not have the full knowledge of the transition probabilities in MDP. Can we improve or optimize a given policy without the transition model?  There are three algorithms covered including Monte Carlo Policy Evaluation, Temporal Difference Policy Evaluation and Tabular Q-Learning.</p>
+<p>Given a fixed policy, Monte Carlo Policy Evaluation and Temporal Difference Policy Evaluation can evaluate the value of each state by using sampling.</p>
+<section id="monte-carlo-policy-evaluation">
+<h3>Monte Carlo Policy Evaluation<a class="headerlink" href="#monte-carlo-policy-evaluation" title="Permalink to this headline"></a></h3>
+<p>Monte Carlo Policy Evaluation simulates a lot of state sequences and use the average as the value of states.</p>
+<p>The visualization is as follow. Every time the algorithm generate a sequence of states and calculate their values and use the average as the value of states. Note that every state only have one action which is the fixed policy.</p>
+<p><img alt="" src="MDP_with_Unknown_Environment/gif/MC_PE.gif" /></p>
+</section>
+<section id="temporal-difference-policy-evaluation">
+<h3>Temporal Difference Policy Evaluation<a class="headerlink" href="#temporal-difference-policy-evaluation" title="Permalink to this headline"></a></h3>
+<p>Monte Carlo Policy Evaluating generate the whole sequence every time, which could be very time-consuming and even not practical when the MDP is infinite or has circles. Temporal Difference Policy Evaluation, however, utilizes the Bellman Equations and update on the way, without waiting for full sequences. In every step, it updates estimated values based on next sampled state without waiting for a final outcome.</p>
+<p>Here is the visualization. Each round we only update state values based on the next state.</p>
+<p><img alt="" src="MDP_with_Unknown_Environment/gif/TD_PE.gif" /></p>
+</section>
+<section id="tabular-q-learning">
+<h3>Tabular Q-Learning<a class="headerlink" href="#tabular-q-learning" title="Permalink to this headline"></a></h3>
+<p>Monte Carlo Policy Evaluation and Temporal Difference Policy Evaluation only estimate the state values given the fixed policy. But how can we take the best action in MDP without a transition model? Q-learning solves the problem of learning about the environment and improving policy at the same time.</p>
+<p>It starts with knowing nothing and pick actions based on epsilon-greedy policy (choose either exploration or exploitation with epsilon probability), and then update the value of state taking certain action, which is Q-value. By updating the Q-value on the fly, the policy will provably converge to the optimal.</p>
+<p>The visualization is as follow. We plot Q-value Q(s,a) in red next to the environment nodes. After Q-Learning, we can output a policy without knowing the transition model.</p>
+<p><img alt="" src="MDP_with_Unknown_Environment/gif/T_QL.gif" /></p>
+</section>
+<section id="deep-q-learning">
+<h3>Deep Q-Learning<a class="headerlink" href="#deep-q-learning" title="Permalink to this headline"></a></h3>
+<p>Tabular Q-learning store Q value for every state-action pairs. But we can use expressive function approximations to store values or/and policies. By doing this, we are no longer limited by table size or discretization and have better generalizability. Also we can directly manipulate the policies.</p>
+<p>Deep Q-learning substitue the storting process in Tabular Q-learning with a deep neural network. It keep adding new experience in the pool of samples “Experience Replay” and every time takes a batch from the pool and fit a network to the new Q-value.</p>
+<p>Here we display a more interesting example - a catching block game. A board on the bottom catches the falling block. We treat the current image of the game as state and the bottom board can take actions to move to the left or right. By doing deep Q-learning, we can get a smart AI game player.</p>
+<p><img alt="" src="MDP_with_Unknown_Environment/gif/D_QL.gif" /></p>
+</section>
+</section>
+<section id="monte-carlo-tree-search">
+<h2>Monte-Carlo Tree Search<a class="headerlink" href="#monte-carlo-tree-search" title="Permalink to this headline"></a></h2>
+<p>Usually, the game tree can be extremely large like chess game which can take an impractical amount of time to do a full search of the game tree. Instead of growing game tree fully, we can use Monte-Carlo Tree Search to smartly grow game tree and ultimately make actions.</p>
+<p>MCTS consists of Tree policy (selection and expansion of the tree), Default policy (simulation of the game) and backpropgation(update the value and number of visits of the game state).</p>
+<p>We also use the tree structure to show how MCTS works. The green, blue, grey represents max player, min player and root player WON/LOST game state respectively. When backpropagating, we plot won/number of visited next to the node. After doing MCTS we can choose the best action for the current state.</p>
+<p><img alt="" src="MCTS/gif/MCTS.gif" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Search-and-Optimization’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ruipengZ.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

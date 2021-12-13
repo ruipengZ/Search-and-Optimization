@@ -7,6 +7,7 @@ Welcome to Search-and-Optimization's documentation!
 ===================================================
 
 .. toctree::
+   README.md
    :maxdepth: 2
    :caption: Contents:
 
