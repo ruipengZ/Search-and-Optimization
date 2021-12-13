@@ -41,7 +41,7 @@ class Node():
         self.n_visit = 0
         self.u = 0
         self.q = 0
-        self.cur_child_idx = 0
+        self.cur_child_idx = 1
         self.payoff = payoff
 
         ## for visualization
@@ -60,7 +60,7 @@ class MCTS():
         self.tree_depth = tree_depth
         self.root = Node(MAX, 0, 0, 0, None, None, 0)
         self.draw_tree(self.root)
-        self.payoff = [random.choice([-1,1]) for _ in range(n_children**(n_depth-2))]
+        self.payoff = [random.choice([-1,1]) for _ in range(n_children**(n_depth-1))]
         self.c = c
 
     def draw_tree(self, node):
@@ -127,12 +127,12 @@ class MCTS():
         while s.depth != self.tree_depth:
 
             if s.depth+1 == self.tree_depth:
-                payoff = self.payoff[s.state-n_children**(n_depth-2)-1]
+                payoff = self.payoff[s.state-n_children**(n_depth-1)+1]
                 child = Node(PAYOFF, s.depth + 1, s.x, s.y - 10, s, payoff, None)
             else:
                 payoff = None
-                s.cur_child_idx = random.randint(0, n_children - 1)
-                child = Node(1-s.type, s.depth+1, s.x + s.pos_list[s.cur_child_idx], s.y - 10, s, payoff, s.state*2+s.cur_child_idx)
+                random_child = random.randint(1, n_children)
+                child = Node(1-s.type, s.depth+1, s.x + s.pos_list[random_child-1], s.y - 10, s, payoff, s.state*2+random_child)
             s = child
 
             plt1, plt2, plt3 = self.draw_tree(child)
@@ -217,6 +217,7 @@ def main():
     ani = animation.ArtistAnimation(fig, ims, interval=1)
     writer = PillowWriter(fps=2)
     ani.save("./gif/MCTS.gif", writer=writer)
+
 
 
 if __name__ == "__main__":
