@@ -5,7 +5,7 @@
 
 Welcome to Search-and-Optimization's documentation!
 ===================================================
-hello!
+
 .. toctree::
    README.md
 
