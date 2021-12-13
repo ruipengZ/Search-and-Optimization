@@ -1,1 +1,1 @@
-myst-parser == 0.16.0asd
+myst-parser == 0.16.0
