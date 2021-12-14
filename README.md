@@ -65,7 +65,7 @@ The implementation is quite simple and intuitive. If you can use conda, you are 
 
 # Documentation
 
-Under construction now. You can start with this README file :)
+You can find it here https://search-and-optimization.readthedocs.io/
 
 # How to use
 

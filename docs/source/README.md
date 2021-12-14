@@ -14,7 +14,6 @@ Hope you can have fun in search and optimization! Any problems with the algorith
 
 * [Welcome](#Welcome)
 * [Requirements](#Requirements)
-* [Documentation](#Documentation)
 * [How to use](#How-to-use)
 * [Algorithms](#Algorithms)
   * [Descent Method](#Descent-Method)
@@ -50,10 +49,6 @@ The implementation is quite simple and intuitive. If you can use conda, you are 
 * Python 3.8.x
 * numpy
 * matplotlib
-
-# Documentation
-
-Under construction now. You can start with this README file :)
 
 # How to use
 
