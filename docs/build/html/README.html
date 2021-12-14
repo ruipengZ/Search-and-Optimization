@@ -108,7 +108,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="search-and-optimization">
 <h1>Search and Optimization<a class="headerlink" href="#search-and-optimization" title="Permalink to this headline"></a></h1>
 <div align=left>
-  <img align="left" src="./logo.png" width="40%" />
+  <img align="left" src="../../logo.png" width="40%" />
 </div>
 <p>This is a Python library for Search and Optimization.</p>
 </section>
@@ -220,11 +220,11 @@
 <ul class="simple">
 <li><p>One Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/GD_1.gif" /></p>
+<p><img alt="" src="_images/GD_1.gif" /></p>
 <ul class="simple">
 <li><p>Two Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/GD_2.gif" /></p>
+<p><img alt="" src="_images/GD_2.gif" /></p>
 </section>
 <section id="newton-s-method">
 <h3>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline"></a></h3>
@@ -232,11 +232,11 @@
 <ul class="simple">
 <li><p>One Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/ND_1.gif" /></p>
+<p><img alt="" src="_images/ND_1.gif" /></p>
 <ul class="simple">
 <li><p>Two Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/ND_2.gif" /></p>
+<p><img alt="" src="_images/ND_2.gif" /></p>
 <p>However fast and do not need a step size (learning rate), Newton’s Method has some drawbacks and caveats:</p>
 <ul class="simple">
 <li><p>The computation cost of inverting the Hessian could be non-trivial.</p></li>
@@ -253,11 +253,11 @@
 <ul class="simple">
 <li><p>One Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/CD_1.gif" /></p>
+<p><img alt="" src="_images/CD_1.gif" /></p>
 <ul class="simple">
 <li><p>Two Dimensional Case</p></li>
 </ul>
-<p><img alt="" src="Descent_Method/gif/CD_2.gif" /></p>
+<p><img alt="" src="_images/CD_2.gif" /></p>
 <p>Reference:</p>
 <p>you can find more details in the reference slides</p>
 <p>http://www.cs.cmu.edu/~pradeepr/convexopt/Lecture_Slides/conjugate_direction_methods.pdf</p>
@@ -265,8 +265,8 @@
 <section id="comparison-of-descent-methods">
 <h3>Comparison of Descent Methods<a class="headerlink" href="#comparison-of-descent-methods" title="Permalink to this headline"></a></h3>
 <p>We can compare the visualization of the above three descent methods as follows:</p>
-<p><img src="./Descent_Method/gif/GD_1.gif" width="33%" /><img src="./Descent_Method/gif/CD_1.gif" width="33%" /><img src="./Descent_Method/gif/ND_1.gif" width="33%" /></p>
-<p><img src="./Descent_Method/gif/GD_2.gif" width="33%" /><img src="./Descent_Method/gif/CD_2.gif" width="33%" /><img src="./Descent_Method/gif/ND_2.gif" width="33%" /></p>
+<p><img src="../../Descent_Method/gif/GD_1.gif" width="33%" /><img src="../../Descent_Method/gif/CD_1.gif" width="33%" /><img src="../../Descent_Method/gif/ND_1.gif" width="33%" /></p>
+<p><img src="../../Descent_Method/gif/GD_2.gif" width="33%" /><img src="../../Descent_Method/gif/CD_2.gif" width="33%" /><img src="../../Descent_Method/gif/ND_2.gif" width="33%" /></p>
 <p>As you can see, Gradient Descent slowly move to the minimum whereas Conjugate Descent and Newton’s Method is faster. In the two dimensional case above, we can observe that Conjugate Descent can be regarded as being between the method of Gradient Descent (first-order method) and Newton’s method (second-order method).</p>
 </section>
 </section>
@@ -278,7 +278,7 @@
 <p>Intuitively, Simulated Annealing is to start from one point, dive into the function and walk randomly, go downhill when we can but sometimes uphill to explore and try to jump out of this sub-optimal local minimum. We expect to gradually settle down by reducing the probability of exploring.</p>
 <p>For problems where finding an approximate global optimum is more important than finding a precise local optimum in a fixed amount of time, simulated annealing may be preferable to exact algorithms like descent methods.</p>
 <p>Here is the visualization of Simulated Annealing:</p>
-<p><img alt="" src="Stochastic_Search/gif/SA.gif" /></p>
+<p><img alt="" src="_images/SA.gif" /></p>
 <p>Reference:</p>
 <p>https://en.wikipedia.org/wiki/Simulated_annealing</p>
 </section>
@@ -287,13 +287,13 @@
 <p>Instead to take one sample of the function, Cross Entropy Methods sample a distribution. The key idea behind that is that finding a global minimum is equivalent to sampling a distribution centered around it.</p>
 <p>Cross Entropy Methods first start with an initial distribution (often a diagonal Gaussian), and then select a subset of samples with lower function values as elite samples. Then update the distribution to best fit those elite samples.</p>
 <p>Here is the visualization of CEM, where red points are elite samples.</p>
-<p><img alt="" src="Stochastic_Search/gif/CEM.gif" /></p>
+<p><img alt="" src="_images/CEM.gif" /></p>
 </section>
 <section id="search-gradient">
 <h3>Search Gradient<a class="headerlink" href="#search-gradient" title="Permalink to this headline"></a></h3>
 <p>In high dimensions, it can quickly become very inefficient to randomly sample. Ideally, we can use the derivative of the expectation of function value on the distribution we sampled, so that we can move the distribution in the direction that imroves the expectation. So Search Gradient borrows the idea of Gradient Method to do stochastic search. The overall algorithm uses this idea combined with log techniques, see reference for details.</p>
 <p>Here is the visualization of Search Gradient:</p>
-<p><img alt="" src="Stochastic_Search/gif/SG.gif" /></p>
+<p><img alt="" src="_images/SG.gif" /></p>
 <p>Reference:</p>
 <p>“Natural Evolution  Strategies” Wierstra et al. JMLR 2014</p>
 </section>
@@ -307,7 +307,7 @@
 <p>Intuitively, it not only take account of the cost-to-come but also cost-to-go. We can see it as a special case of UCS whereas it uses the cost of real cost plus heuristic cost by adopting a heuristic function.</p>
 <p>You can find more details with the reference.</p>
 <p>Here is a visualization of a path searching process of A*. We start on the red star and the destination is blue star. Black grid are obstacles. Yellow cross are all the locations that have been searched and the final shortest path is red cross path.</p>
-<p><img alt="" src="Path_Search/gif/AStar.gif" /></p>
+<p><img alt="" src="_images/AStar.gif" /></p>
 <p>Reference:</p>
 <p>https://en.wikipedia.org/wiki/A*_search_algorithm</p>
 </section>
@@ -315,7 +315,7 @@
 <h3>Minimax Search<a class="headerlink" href="#minimax-search" title="Permalink to this headline"></a></h3>
 <p>Suppose we are playing games with another one in turn. At the end of the game, there are certain payoffs. In the game, we make every move to maximize our the benefit or value and the opponent tries to minimize it. We can use Minimax Search on this max-min-player game to calculate every value of a tree node and then make the best move.</p>
 <p>Here is the visualization for Minimax Search. The max players are the green nodes and blue nodes are the min players. At the end of the game, there are payoffs as grey nodes. Minimax calculate every nodes’ value and the choice from bottom to top, visualized as orange texts and arrows. Finally as the root max player, the red nodes and arrows are showed as how we should play the game to get the maximum benefit.</p>
-<p><img alt="" src="Path_Search/gif/minimax.gif" /></p>
+<p><img alt="" src="_images/minimax.gif" /></p>
 </section>
 </section>
 <section id="markov-decision-process">
@@ -326,18 +326,18 @@
 <h3>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline"></a></h3>
 <p>Value Iteration start with arbitrary state value and use Bellman Update to update the values and pick the best policy.</p>
 <p>Here is the visualization. Green nodes are state node and blue nodes are the environment with the transition probability on the arrow pointing to the next state. When we do Bellman Update on a certain state, it will be marked as red and a new value is updated on its left. The best action is labeled as red arrow. We do Bellman Update for rounds until it converges.</p>
-<p><img alt="" src="MDP/gif/value_iter.gif" /></p>
+<p><img alt="" src="_images/value_iter.gif" /></p>
 </section>
 <section id="policy-iteration">
 <h3>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline"></a></h3>
 <p>Policy Iteration starts with an arbitrary policy and solve the Bellman Equations to evaluate the values defined by the policy, then check each state to see if we can improve the max value. We keep doing this until the policy is fixed.</p>
 <p>Here is the visualization on the same MDP as in the Value Iteration. Nodes and arrows are the same as in Value Iteration, where as every state start with an arbitrary policy and update it every round.</p>
-<p><img alt="" src="MDP/gif/policy_iter.gif" /></p>
+<p><img alt="" src="_images/policy_iter.gif" /></p>
 </section>
 <section id="comparison-of-value-and-policy-iteration">
 <h3>Comparison of Value and Policy Iteration<a class="headerlink" href="#comparison-of-value-and-policy-iteration" title="Permalink to this headline"></a></h3>
 <p>Here are the final state of the two algorithms:</p>
-<p><img src="./MDP/gif/value_f.gif" width="50%"/><img src="./MDP/gif/policy_f.gif" width="50%"/></p>
+<p><img src="../../MDP/gif/value_f.gif" width="50%"/><img src="../../MDP/gif/policy_f.gif" width="50%"/></p>
 <p>As we can see from the final state of the two algorithms given the same MDP, the two algorithms output the same optimal policy, whereas the Policy Iteration may not output the final value of states because the algorithm stops when policy is stabilized.</p>
 </section>
 </section>
@@ -349,27 +349,27 @@
 <h3>Monte Carlo Policy Evaluation<a class="headerlink" href="#monte-carlo-policy-evaluation" title="Permalink to this headline"></a></h3>
 <p>Monte Carlo Policy Evaluation simulates a lot of state sequences and use the average as the value of states.</p>
 <p>The visualization is as follow. Every time the algorithm generate a sequence of states and calculate their values and use the average as the value of states. Note that every state only have one action which is the fixed policy.</p>
-<p><img alt="" src="MDP_with_Unknown_Environment/gif/MC_PE.gif" /></p>
+<p><img alt="" src="_images/MC_PE.gif" /></p>
 </section>
 <section id="temporal-difference-policy-evaluation">
 <h3>Temporal Difference Policy Evaluation<a class="headerlink" href="#temporal-difference-policy-evaluation" title="Permalink to this headline"></a></h3>
 <p>Monte Carlo Policy Evaluating generate the whole sequence every time, which could be very time-consuming and even not practical when the MDP is infinite or has circles. Temporal Difference Policy Evaluation, however, utilizes the Bellman Equations and update on the way, without waiting for full sequences. In every step, it updates estimated values based on next sampled state without waiting for a final outcome.</p>
 <p>Here is the visualization. Each round we only update state values based on the next state.</p>
-<p><img alt="" src="MDP_with_Unknown_Environment/gif/TD_PE.gif" /></p>
+<p><img alt="" src="_images/TD_PE.gif" /></p>
 </section>
 <section id="tabular-q-learning">
 <h3>Tabular Q-Learning<a class="headerlink" href="#tabular-q-learning" title="Permalink to this headline"></a></h3>
 <p>Monte Carlo Policy Evaluation and Temporal Difference Policy Evaluation only estimate the state values given the fixed policy. But how can we take the best action in MDP without a transition model? Q-learning solves the problem of learning about the environment and improving policy at the same time.</p>
 <p>It starts with knowing nothing and pick actions based on epsilon-greedy policy (choose either exploration or exploitation with epsilon probability), and then update the value of state taking certain action, which is Q-value. By updating the Q-value on the fly, the policy will provably converge to the optimal.</p>
 <p>The visualization is as follow. We plot Q-value Q(s,a) in red next to the environment nodes. After Q-Learning, we can output a policy without knowing the transition model.</p>
-<p><img alt="" src="MDP_with_Unknown_Environment/gif/T_QL.gif" /></p>
+<p><img alt="" src="_images/T_QL.gif" /></p>
 </section>
 <section id="deep-q-learning">
 <h3>Deep Q-Learning<a class="headerlink" href="#deep-q-learning" title="Permalink to this headline"></a></h3>
 <p>Tabular Q-learning store Q value for every state-action pairs. But we can use expressive function approximations to store values or/and policies. By doing this, we are no longer limited by table size or discretization and have better generalizability. Also we can directly manipulate the policies.</p>
 <p>Deep Q-learning substitue the storting process in Tabular Q-learning with a deep neural network. It keep adding new experience in the pool of samples “Experience Replay” and every time takes a batch from the pool and fit a network to the new Q-value.</p>
 <p>Here we display a more interesting example - a catching block game. A board on the bottom catches the falling block. We treat the current image of the game as state and the bottom board can take actions to move to the left or right. By doing deep Q-learning, we can get a smart AI game player.</p>
-<p><img alt="" src="MDP_with_Unknown_Environment/gif/D_QL.gif" /></p>
+<p><img alt="" src="_images/D_QL.gif" /></p>
 </section>
 </section>
 <section id="monte-carlo-tree-search">
@@ -377,7 +377,7 @@
 <p>Usually, the game tree can be extremely large like chess game which can take an impractical amount of time to do a full search of the game tree. Instead of growing game tree fully, we can use Monte-Carlo Tree Search to smartly grow game tree and ultimately make actions.</p>
 <p>MCTS consists of Tree policy (selection and expansion of the tree), Default policy (simulation of the game) and backpropgation(update the value and number of visits of the game state).</p>
 <p>We also use the tree structure to show how MCTS works. The green, blue, grey represents max player, min player and root player WON/LOST game state respectively. When backpropagating, we plot won/number of visited next to the node. After doing MCTS we can choose the best action for the current state.</p>
-<p><img alt="" src="MCTS/gif/MCTS.gif" /></p>
+<p><img alt="" src="_images/MCTS.gif" /></p>
 </section>
 </section>
 

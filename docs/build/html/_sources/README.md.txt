@@ -1,17 +1,10 @@
 # Search and Optimization
 
 <div align=left>
-  <img align="left" src="./logo.png" width="40%" />
+  <img align="left" src="../../logo.png" width="40%" />
 </div>
 
 This is a Python library for Search and Optimization.
-
-
-
-
-
-
-
 
 
 # Welcome
@@ -19,7 +12,6 @@ This is a Python library for Search and Optimization.
 This is a library for search and optimization algorithms. The basic topics are covered which include Descent Method, Stochastic Search, Path Search, MDP-related and RL related algorithms. By using this library, you are expected to see basic ideas behind the algorithms through simple but intuitive visualizations.
 
 Hope you can have fun in search and optimization! Any problems with the algorithm or implementation or other problems please feel free to contact me!
-
 
 
 # Table of Contents
@@ -107,11 +99,11 @@ Here are the one and two dimensional example visualization for gradient descent.
 
 * One Dimensional Case
 
-![](./Descent_Method/gif/GD_1.gif)
+![](../../Descent_Method/gif/GD_1.gif)
 
 * Two Dimensional Case
 
-![](./Descent_Method/gif/GD_2.gif)
+![](../../Descent_Method/gif/GD_2.gif)
 
 ### Newton's Method
 
@@ -119,11 +111,11 @@ Gradient Descent uses the first derivative as guess of the function. Newton's Me
 
 * One Dimensional Case
 
-![](./Descent_Method/gif/ND_1.gif)
+![](../../Descent_Method/gif/ND_1.gif)
 
 * Two Dimensional Case
 
-![](./Descent_Method/gif/ND_2.gif)
+![](../../Descent_Method/gif/ND_2.gif)
 
 However fast and do not need a step size (learning rate), Newton's Method has some drawbacks and caveats:
 
@@ -143,11 +135,11 @@ For quadratic problems, we can do better than generic directions of gradient. In
 
 * One Dimensional Case
 
-![](./Descent_Method/gif/CD_1.gif)
+![](../../Descent_Method/gif/CD_1.gif)
 
 * Two Dimensional Case
 
-![](./Descent_Method/gif/CD_2.gif)
+![](../../Descent_Method/gif/CD_2.gif)
 
 Reference:
 
@@ -159,9 +151,9 @@ http://www.cs.cmu.edu/~pradeepr/convexopt/Lecture_Slides/conjugate_direction_met
 
 We can compare the visualization of the above three descent methods as follows:
 
-<img src="./Descent_Method/gif/GD_1.gif" width="33%" /><img src="./Descent_Method/gif/CD_1.gif" width="33%" /><img src="./Descent_Method/gif/ND_1.gif" width="33%" />
+<img src="../../Descent_Method/gif/GD_1.gif" width="33%" /><img src="../../Descent_Method/gif/CD_1.gif" width="33%" /><img src="../../Descent_Method/gif/ND_1.gif" width="33%" />
 
-<img src="./Descent_Method/gif/GD_2.gif" width="33%" /><img src="./Descent_Method/gif/CD_2.gif" width="33%" /><img src="./Descent_Method/gif/ND_2.gif" width="33%" />
+<img src="../../Descent_Method/gif/GD_2.gif" width="33%" /><img src="../../Descent_Method/gif/CD_2.gif" width="33%" /><img src="../../Descent_Method/gif/ND_2.gif" width="33%" />
 
 As you can see, Gradient Descent slowly move to the minimum whereas Conjugate Descent and Newton's Method is faster. In the two dimensional case above, we can observe that Conjugate Descent can be regarded as being between the method of Gradient Descent (first-order method) and Newton’s method (second-order method). 
 
@@ -177,7 +169,7 @@ For problems where finding an approximate global optimum is more important than 
 
 Here is the visualization of Simulated Annealing:
 
-![](./Stochastic_Search/gif/SA.gif)
+![](../../Stochastic_Search/gif/SA.gif)
 
 
 
@@ -193,7 +185,7 @@ Cross Entropy Methods first start with an initial distribution (often a diagonal
 
 Here is the visualization of CEM, where red points are elite samples.
 
-![](./Stochastic_Search/gif/CEM.gif)
+![](../../Stochastic_Search/gif/CEM.gif)
 
 ### Search Gradient
 
@@ -201,7 +193,7 @@ In high dimensions, it can quickly become very inefficient to randomly sample. I
 
 Here is the visualization of Search Gradient:
 
-![](./Stochastic_Search/gif/SG.gif)
+![](../../Stochastic_Search/gif/SG.gif)
 
 
 
@@ -223,7 +215,7 @@ You can find more details with the reference.
 
 Here is a visualization of a path searching process of A*. We start on the red star and the destination is blue star. Black grid are obstacles. Yellow cross are all the locations that have been searched and the final shortest path is red cross path.
 
-![](./Path_Search/gif/AStar.gif)
+![](../../Path_Search/gif/AStar.gif)
 
 Reference:
 
@@ -235,7 +227,7 @@ Suppose we are playing games with another one in turn. At the end of the game, t
 
 Here is the visualization for Minimax Search. The max players are the green nodes and blue nodes are the min players. At the end of the game, there are payoffs as grey nodes. Minimax calculate every nodes' value and the choice from bottom to top, visualized as orange texts and arrows. Finally as the root max player, the red nodes and arrows are showed as how we should play the game to get the maximum benefit.
 
-![](./Path_Search/gif/minimax.gif)
+![](../../Path_Search/gif/minimax.gif)
 
 ## Markov Decision Process
 
@@ -249,7 +241,7 @@ Value Iteration start with arbitrary state value and use Bellman Update to updat
 
 Here is the visualization. Green nodes are state node and blue nodes are the environment with the transition probability on the arrow pointing to the next state. When we do Bellman Update on a certain state, it will be marked as red and a new value is updated on its left. The best action is labeled as red arrow. We do Bellman Update for rounds until it converges.
 
-![](./MDP/gif/value_iter.gif)
+![](../../MDP/gif/value_iter.gif)
 
 ### Policy Iteration
 
@@ -257,13 +249,13 @@ Policy Iteration starts with an arbitrary policy and solve the Bellman Equations
 
 Here is the visualization on the same MDP as in the Value Iteration. Nodes and arrows are the same as in Value Iteration, where as every state start with an arbitrary policy and update it every round.
 
-![](./MDP/gif/policy_iter.gif)
+![](../../MDP/gif/policy_iter.gif)
 
 ### Comparison of Value and Policy Iteration
 
 Here are the final state of the two algorithms:
 
-<img src="./MDP/gif/value_f.gif" width="50%"/><img src="./MDP/gif/policy_f.gif" width="50%"/>
+<img src="../../MDP/gif/value_f.gif" width="50%"/><img src="../../MDP/gif/policy_f.gif" width="50%"/>
 
 As we can see from the final state of the two algorithms given the same MDP, the two algorithms output the same optimal policy, whereas the Policy Iteration may not output the final value of states because the algorithm stops when policy is stabilized.
 
@@ -279,7 +271,7 @@ Monte Carlo Policy Evaluation simulates a lot of state sequences and use the ave
 
 The visualization is as follow. Every time the algorithm generate a sequence of states and calculate their values and use the average as the value of states. Note that every state only have one action which is the fixed policy.
 
-![](./MDP_with_Unknown_Environment/gif/MC_PE.gif)
+![](../../MDP_with_Unknown_Environment/gif/MC_PE.gif)
 
 ### Temporal Difference Policy Evaluation
 
@@ -287,7 +279,7 @@ Monte Carlo Policy Evaluating generate the whole sequence every time, which coul
 
 Here is the visualization. Each round we only update state values based on the next state.
 
-![](./MDP_with_Unknown_Environment/gif/TD_PE.gif)
+![](../../MDP_with_Unknown_Environment/gif/TD_PE.gif)
 
 ### Tabular Q-Learning
 
@@ -297,7 +289,7 @@ It starts with knowing nothing and pick actions based on epsilon-greedy policy (
 
 The visualization is as follow. We plot Q-value Q(s,a) in red next to the environment nodes. After Q-Learning, we can output a policy without knowing the transition model.
 
-![](./MDP_with_Unknown_Environment/gif/T_QL.gif)
+![](../../MDP_with_Unknown_Environment/gif/T_QL.gif)
 
 
 
@@ -309,7 +301,7 @@ Deep Q-learning substitue the storting process in Tabular Q-learning with a deep
 
 Here we display a more interesting example - a catching block game. A board on the bottom catches the falling block. We treat the current image of the game as state and the bottom board can take actions to move to the left or right. By doing deep Q-learning, we can get a smart AI game player.
 
-![](./MDP_with_Unknown_Environment/gif/D_QL.gif)
+![](../../MDP_with_Unknown_Environment/gif/D_QL.gif)
 
 ## Monte-Carlo Tree Search
 
@@ -319,5 +311,5 @@ MCTS consists of Tree policy (selection and expansion of the tree), Default poli
 
 We also use the tree structure to show how MCTS works. The green, blue, grey represents max player, min player and root player WON/LOST game state respectively. When backpropagating, we plot won/number of visited next to the node. After doing MCTS we can choose the best action for the current state.
 
-![](./MCTS/gif/MCTS.gif)
+![](../../MCTS/gif/MCTS.gif)
 
