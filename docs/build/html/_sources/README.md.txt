@@ -1,9 +1,5 @@
 # Search and Optimization
 
-<div align=left>
-  <img align="left" src="../../logo.png" width="40%" />
-</div>
-
 This is a Python library for Search and Optimization.
 
 
