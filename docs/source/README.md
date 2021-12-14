@@ -142,9 +142,9 @@ http://www.cs.cmu.edu/~pradeepr/convexopt/Lecture_Slides/conjugate_direction_met
 
 We can compare the visualization of the above three descent methods as follows:
 
-<img src="../../Descent_Method/gif/GD_1.gif" width="33%" /><img src="../../Descent_Method/gif/CD_1.gif" width="33%" /><img src="../../Descent_Method/gif/ND_1.gif" width="33%" />
+<img src="../../Descent_Method/gif/GD_1.gif" width="33%"/><img src="../../Descent_Method/gif/CD_1.gif" width="33%"/><img src="../../Descent_Method/gif/ND_1.gif" width="33%"/>
 
-<img src="../../Descent_Method/gif/GD_2.gif" width="33%" /><img src="../../Descent_Method/gif/CD_2.gif" width="33%" /><img src="../../Descent_Method/gif/ND_2.gif" width="33%" />
+<img src="../../Descent_Method/gif/GD_2.gif" width="33%"/><img src="../../Descent_Method/gif/CD_2.gif" width="33%"/><img src="../../Descent_Method/gif/ND_2.gif" width="33%"/>
 
 As you can see, Gradient Descent slowly move to the minimum whereas Conjugate Descent and Newton's Method is faster. In the two dimensional case above, we can observe that Conjugate Descent can be regarded as being between the method of Gradient Descent (first-order method) and Newton’s method (second-order method). 
 
