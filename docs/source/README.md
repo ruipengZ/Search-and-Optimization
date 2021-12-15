@@ -27,8 +27,8 @@ Hope you can have fun in search and optimization! Any problems with the algorith
     * [Search Gradient](#Search-Gradient)
   * [Path Search](#Path-Search)
     * [A* Search](#A*-Search)
+    * [RRT(Rapid Exploring Random Tree)](#RRT)
     * [Minimax Search](#Minimax-Search)
-    * [RRT(Rapid Exploring Random Tree)]()
   * [Markov Decision Process](#Markov-Decision-Process)
     * [Value Iteration](#Value-Iteration)
     * [Policy Iteration](#Policy-Iteration)
@@ -211,6 +211,12 @@ Here is a visualization of a path searching process of A*. We start on the red s
 Reference:
 
 https://en.wikipedia.org/wiki/A*_search_algorithm
+
+### RRT
+
+A **rapidly exploring random tree** (RRT) searches a path by randomly growing a tree in the free space. Concretely, in each iteration, randomly sample a state from the free space. Then we find the node in the current tree nearest to the sampled state, and grow the tree at that node by a small step. Meanwhile, we periodically check if the goal is a small distance away from any node in the tree.
+
+![](../../Path_Search/gif/RRT.gif)
 
 ### Minimax Search
 

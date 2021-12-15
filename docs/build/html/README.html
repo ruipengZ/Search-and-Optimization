@@ -59,6 +59,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#path-search">Path Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#a-search">A* Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rrt">RRT</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#minimax-search">Minimax Search</a></li>
 </ul>
 </li>
@@ -139,8 +140,8 @@
 <li><p><a class="reference external" href="#Path-Search">Path Search</a></p>
 <ul>
 <li><p><a class="reference external" href="#A*-Search">A* Search</a></p></li>
+<li><p><a class="reference external" href="#RRT">RRT(Rapid Exploring Random Tree)</a></p></li>
 <li><p><a class="reference external" href="#Minimax-Search">Minimax Search</a></p></li>
-<li><p><span class="xref myst">RRT(Rapid Exploring Random Tree)</span></p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="#Markov-Decision-Process">Markov Decision Process</a></p>
@@ -256,8 +257,8 @@
 <section id="comparison-of-descent-methods">
 <h3>Comparison of Descent Methods<a class="headerlink" href="#comparison-of-descent-methods" title="Permalink to this headline"></a></h3>
 <p>We can compare the visualization of the above three descent methods as follows:</p>
-<p><img src="_images/GD_1.gif" width="33%" alt=""/><img src="_images/CD_1.gif" width="33%" alt=""/><img src="_images/ND_1.gif" width="33%" alt=""/></p>
-<p><img src="_images/GD_2.gif" width="33%" alt=""/><img src="_images/CD_2.gif" width="33%" alt=""/><img src="_images/ND_2.gif" width="33%" alt=""/></p>
+<p><img src="../../Descent_Method/gif/GD_1.gif" width="33%"/><img src="../../Descent_Method/gif/CD_1.gif" width="33%"/><img src="../../Descent_Method/gif/ND_1.gif" width="33%"/></p>
+<p><img src="../../Descent_Method/gif/GD_2.gif" width="33%"/><img src="../../Descent_Method/gif/CD_2.gif" width="33%"/><img src="../../Descent_Method/gif/ND_2.gif" width="33%"/></p>
 <p>As you can see, Gradient Descent slowly move to the minimum whereas Conjugate Descent and Newton’s Method is faster. In the two dimensional case above, we can observe that Conjugate Descent can be regarded as being between the method of Gradient Descent (first-order method) and Newton’s method (second-order method).</p>
 </section>
 </section>
@@ -302,6 +303,11 @@
 <p>Reference:</p>
 <p>https://en.wikipedia.org/wiki/A*_search_algorithm</p>
 </section>
+<section id="rrt">
+<h3>RRT<a class="headerlink" href="#rrt" title="Permalink to this headline"></a></h3>
+<p>A <strong>rapidly exploring random tree</strong> (RRT) searches a path by randomly growing a tree in the free space. Concretely, in each iteration, randomly sample a state from the free space. Then we find the node in the current tree nearest to the sampled state, and grow the tree at that node by a small step. Meanwhile, we periodically check if the goal is a small distance away from any node in the tree.</p>
+<p><img alt="" src="_images/RRT.gif" /></p>
+</section>
 <section id="minimax-search">
 <h3>Minimax Search<a class="headerlink" href="#minimax-search" title="Permalink to this headline"></a></h3>
 <p>Suppose we are playing games with another one in turn. At the end of the game, there are certain payoffs. In the game, we make every move to maximize our the benefit or value and the opponent tries to minimize it. We can use Minimax Search on this max-min-player game to calculate every value of a tree node and then make the best move.</p>
@@ -328,7 +334,7 @@
 <section id="comparison-of-value-and-policy-iteration">
 <h3>Comparison of Value and Policy Iteration<a class="headerlink" href="#comparison-of-value-and-policy-iteration" title="Permalink to this headline"></a></h3>
 <p>Here are the final state of the two algorithms:</p>
-<p><img src="_images/value_f.gif" width="50%" alt=""/><img src="_images/policy_f.gif" width="50%" alt=""/></p>
+<p><img src="../../MDP/gif/value_f.gif" width="50%"/><img src="../../MDP/gif/policy_f.gif" width="50%"/></p>
 <p>As we can see from the final state of the two algorithms given the same MDP, the two algorithms output the same optimal policy, whereas the Policy Iteration may not output the final value of states because the algorithm stops when policy is stabilized.</p>
 </section>
 </section>

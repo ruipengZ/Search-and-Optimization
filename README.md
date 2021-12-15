@@ -40,8 +40,8 @@ Hope you can have fun in search and optimization! Any problems with the algorith
     * [Search Gradient](#Search-Gradient)
   * [Path Search](#Path-Search)
     * [A* Search](#A*-Search)
+    * [RRT(Rapid Exploring Random Tree)](#RRT)
     * [Minimax Search](#Minimax-Search)
-    * [RRT(Rapid Exploring Random Tree)]()
   * [Markov Decision Process](#Markov-Decision-Process)
     * [Value Iteration](#Value-Iteration)
     * [Policy Iteration](#Policy-Iteration)
@@ -229,6 +229,12 @@ Reference:
 
 https://en.wikipedia.org/wiki/A*_search_algorithm
 
+### RRT
+
+A **rapidly exploring random tree** (RRT) searches a path by randomly growing a tree in the free space. Concretely, in each iteration, randomly sample a state from the free space. Then we find the node in the current tree nearest to the sampled state, and grow the tree at that node by a small step. Meanwhile, we periodically check if the goal is a small distance away from any node in the tree.
+
+![](./Path_Search/gif/RRT.gif)
+
 ### Minimax Search
 
 Suppose we are playing games with another one in turn. At the end of the game, there are certain payoffs. In the game, we make every move to maximize our the benefit or value and the opponent tries to minimize it. We can use Minimax Search on this max-min-player game to calculate every value of a tree node and then make the best move.
@@ -236,6 +242,8 @@ Suppose we are playing games with another one in turn. At the end of the game, t
 Here is the visualization for Minimax Search. The max players are the green nodes and blue nodes are the min players. At the end of the game, there are payoffs as grey nodes. Minimax calculate every nodes' value and the choice from bottom to top, visualized as orange texts and arrows. Finally as the root max player, the red nodes and arrows are showed as how we should play the game to get the maximum benefit.
 
 ![](./Path_Search/gif/minimax.gif)
+
+
 
 ## Markov Decision Process
 
