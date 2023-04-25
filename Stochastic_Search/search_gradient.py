@@ -24,7 +24,7 @@ contour = plt.contour(x1_func, x2_func, y_func,[1,10,20,40,60,80,100,120,150,200
 plt.clabel(contour,colors='r')
 plt.xlabel('X1')
 plt.ylabel('X2')
-plt.title('Y = X1^2 - 2*X2^2')
+plt.title('Y = X1^2 + 2*X2^2')
 
 ims = []
 frames = []

@@ -5,7 +5,7 @@ from matplotlib.animation import PillowWriter
 
 ### Two Dimensional Example ###
 def func(x1,x2):
-    return x1**2 + 2*x2**2
+    return x1**2 + 2*x2**2 / x1 / x2
 
 x1_func = np.arange(-10, 10, 0.01)
 x2_func = np.arange(-10, 10, 0.01)
@@ -17,7 +17,7 @@ contour = plt.contour(x1_func, x2_func, y_func,[1,10,20,40,60,80,100,120,150,200
 plt.clabel(contour,colors='r')
 plt.xlabel('X1')
 plt.ylabel('X2')
-plt.title('Y = X1^2 - 2*X2^2')
+plt.title('Y = X1^2 + 2*X2^2')
 
 ims = []
 frames = []
@@ -41,8 +41,11 @@ for i in range(10):
 
     new_mean = np.mean(elite_samples, axis = 0)
     new_sigma = np.cov(elite_samples.transpose(),ddof=0)
+    new_sigma = np.diag(np.diagonal(new_sigma))
     samples = np.random.multivariate_normal(new_mean, new_sigma, n_samples)
 
 ani = animation.ArtistAnimation(fig, ims, interval=1)
 writer = PillowWriter(fps=3)
-ani.save("./gif/CEM.gif", writer=writer)
+# ani.save("./gif/CEM.gif", writer=writer)
+# ani.save("./gif/CEM_cov.gif", writer=writer)
+ani.save("./gif/CEM_ind.gif", writer=writer)
